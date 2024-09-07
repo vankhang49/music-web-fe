@@ -3,7 +3,8 @@ import { CiHeart, CiMenuKebab } from "react-icons/ci";
 import { usePlayMusic } from "../../core/contexts/PlayMusicContext";
 import { useEffect, useRef, useState } from "react";
 import {FaPause, FaPlay} from "react-icons/fa";
-import {IoPause, IoPlaySkipBack, IoPlaySkipForward} from "react-icons/io5";
+import {IoPause, IoPlaySkipBack, IoPlaySkipForward, IoPlaySkipForwardSharp} from "react-icons/io5";
+import {IoMdPlay} from "react-icons/io";
 
 
 export function PlayMusicFooter({ callPlayLyrics }) {
@@ -125,8 +126,8 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                                 handlePlaySong();
                             }}
                             icon={
-                                isPlayingSong ? <IoPause size={24} />
-                                    : <FaPlay size={16} />
+                                isPlayingSong ? <IoPause size={20} />
+                                    : <IoMdPlay size={20} />
                             }
                             gd={{
                                 borderRadius: '50%',
@@ -141,7 +142,7 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                                 e.stopPropagation();
                                 handleChangeSong(1);
                             }}
-                            icon={<IoPlaySkipForward size={20} />}
+                            icon={<IoPlaySkipForwardSharp size={20} />}
                             gd={{
                                 borderRadius: '50%',
                                 padding: 5,
