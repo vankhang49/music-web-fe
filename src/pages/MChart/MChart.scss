@@ -1,0 +1,8 @@
+.gd_group .M-Chart{
+    height: calc(100% - 120px);
+    max-height: 500px;
+    display: flex;
+    canvas{
+        flex: 1;
+    }
+}

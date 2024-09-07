@@ -1,0 +1,79 @@
+.lyrics-play {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.lyrics-play.active {
+    transform: translateY(0);
+}
+
+.lyrics-content {
+
+    p {
+        font-weight: 600;
+        background-clip: text!important;
+        color: transparent;
+        background: radial-gradient(50% 124.93% at 95.86% -10%, #3efad9 0, hsla(337, 74%, 39%, 0) 100%), linear-gradient(91.56deg, #ff9357 1.54%, #9100ff 98.71%);;
+    }
+}
+
+.theme_3 .lyrics-content {
+    p {
+        background: radial-gradient(50% 124.93% at 95.86% -10%, #da062c 0, hsla(158, 65%, 53%, 0) 100%), linear-gradient(91.56deg, #d611dd 1.54%, #0023fd 98.71%);;
+    }
+}
+
+.theme_4 .lyrics-content {
+    p {
+        background: #fff;
+    }
+}
+
+.audio-card {
+    position: relative;
+    .audio-play {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.16);
+        opacity: 0;
+
+        button {
+            background: transparent;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+    }
+}
+
+.audio-card:hover {
+    .audio-play {
+        opacity: 1;
+    }
+    .audio-image {
+        overflow: hidden;
+        img {
+            scale: 1.1;
+        }
+    }
+}
+
+.audio-card.active {
+    .audio-play {
+        opacity: 1;
+    }
+    /*.audio-image {*/
+    /*    overflow: hidden;*/
+    /*    img {*/
+    /*        scale: 1.1;*/
+    /*    }*/
+    /*}*/
+}

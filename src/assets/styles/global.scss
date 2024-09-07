@@ -1,0 +1,313 @@
+:root {
+    --bg-comment: #34214e;
+    --bg-content-comment: rgba(62,41,73,0.88);
+}
+
+.theme_3 {
+    --bg-comment: rgb(30 27 75);
+    --bg-content-comment: rgba(59, 57, 87, 0.87);
+}
+
+.theme_4 {
+    --bg-comment: rgb(76 5 25);
+    --bg-content-comment: rgb(71, 41, 49);
+}
+
+
+
+// Các lớp phụ bổ trợ
+.hr-top {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 80%;
+        border-top: 1px solid #888;
+        transform: translateX(-50%);
+    }
+}
+.form-btn-mt{
+    margin-top: 1rem;
+}
+.gd_button{
+    &.sign_up{
+        span{
+            position: absolute;
+            left: 24px;
+        }
+    }
+}
+.Toastify__toast-theme--dark::before {
+    content: '';
+    background: url("../../assets/images/logo2.png") center center no-repeat;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+}
+.Toastify__toast-theme--dark {
+    background: linear-gradient(
+                    to right,
+                    #510e73,
+                    #87105e,
+                    #693bdc,
+                    #4e55a6
+    )!important;
+
+}
+
+
+//---- Reset lại cho thư viện Slick --------------------------------
+
+.slick-next {
+    right: -8px !important;
+}
+.slick-prev {
+    left: -8px !important;
+    z-index: 1;
+}
+
+// ----------------------------------------------------------------
+
+//---- Reset lại cho thư viện lvq --------------------------------
+
+.gd_footer{
+    .card-footer{
+        width: max-content;
+        >div{
+            width: auto;
+        }
+        figure{
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
+
+// ----------------------------------------------------------------
+
+// ------- Thiết lập các class bổ trợ cho theme  ----------------
+.default {
+    .active-class {
+        background-color: #393243;
+        color: white;
+        box-shadow: inset 6px 0 #9b4de0;
+    }
+    .card-default.hover-card {
+        padding: 8px;
+
+        &:hover {
+            background-color: #2f2739;
+        }
+    }
+    .card-default {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #e4e4e7;
+        }
+
+        p, time {
+            color: #a1a1aa;
+        }
+    }
+}
+.theme_1 {
+    .active-class {
+        background-color: #333;
+        color: white;
+        box-shadow: inset 6px 0 #dcdcdc;
+    }
+    .card-theme-1.hover-card {
+        padding: 8px;
+        &:hover {
+            background-color: #333;
+        }
+    }
+    .card-theme-1 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #e4e4e7;
+        }
+
+        p, time {
+            color: #a1a1aa;
+        }
+    }
+    .search-home{
+        background-color: #333;
+        &:focus{
+            background-color: #333;
+            color: white;
+        }
+    }
+    .setting-home{
+        background-color: #333;
+    }
+}
+
+.theme_2 {
+    .logo-app {
+        img {
+            filter: invert(100%);
+        }
+    }
+    .active-class {
+        background-color: #dcdcdc;
+        color: black;
+        box-shadow: inset 6px 0 #dcdcdc;
+    }
+
+    .card-theme-2.hover-card {
+        padding: 8px;
+        &:hover {
+            background-color: #dcdcdc;
+        }
+    }
+    .card-theme-2 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: black;
+        }
+
+        p, time {
+            color: #8b8791;
+        }
+    }
+    .search-home{
+        background-color: #dcdcdc;
+        &:focus{
+            background-color: #dcdcdc;
+            color: black;
+            outline: 1px solid black;
+        }
+    }
+    .setting-home{
+        background-color: #dcdcdc;
+    }
+}
+
+.theme_3 {
+    .layout-home {
+        background: url("../../assets/images/bg-st.jpg") center center no-repeat;
+        background-size: cover;
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.29);
+        }
+    }
+    .logo-app {
+        background: transparent;
+        img {
+            background: transparent;
+        }
+    }
+
+    .active-class {
+        background-color: rgb(99 102 241);
+        color: white;
+        box-shadow: inset 6px 0 #dcdcdc;
+    }
+
+    .card-theme-3.hover-card {
+        padding: 8px;
+        &:hover {
+            background-color: #dcdcdc;
+        }
+    }
+    .card-theme-3 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: gray;
+        }
+
+        p, time {
+            color: #8b8791;
+        }
+    }
+    .search-home{
+        background-color: rgba(0, 0, 0, 0.61);
+        &:focus{
+            background-color: rgba(0, 0, 0, 0.61);
+            color: white;
+            outline: 1px solid black;
+        }
+    }
+
+    .setting-home{
+        background-color: rgba(0, 0, 0, 0.61);
+    }
+}
+
+.theme_4 {
+    .layout-home {
+        background: url("../../assets/images/dua lipa.jpg") center center no-repeat;
+        background-size: cover;
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.29);
+        }
+    }
+    .logo-app {
+        background: transparent;
+        img {
+            background: transparent;
+        }
+    }
+
+    .active-class {
+        background-color: rgb(244 63 94);
+        color: white;
+        box-shadow: inset 6px 0 #dcdcdc;
+    }
+
+    .card-theme-4.hover-card {
+        padding: 8px;
+        &:hover {
+            background-color: #dcdcdc;
+        }
+    }
+    .card-theme-4 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: gray;
+        }
+
+        p, time {
+            color: #8b8791;
+        }
+    }
+    .search-home{
+        background-color: rgba(0, 0, 0, 0.61);
+        &:focus{
+            background-color: rgba(0, 0, 0, 0.61);
+            color: white;
+            outline: 1px solid black;
+        }
+    }
+    .setting-home{
+        background-color: rgba(0, 0, 0, 0.61);
+    }
+}
+
+// ----------------------------------------------------------------

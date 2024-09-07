@@ -1,0 +1,15 @@
+
+.custom-table {
+    tr {
+        border-radius: 10px;
+        background-color: transparent;
+
+        th:first-child {
+            width: 20px;
+        }
+        td:first-child {
+            width: 20px;
+        }
+    }
+
+}

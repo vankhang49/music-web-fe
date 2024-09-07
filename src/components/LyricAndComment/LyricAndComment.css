@@ -1,0 +1,89 @@
+.LyricAndComment {
+    .button-header {
+        border-radius: 25px;
+        background-color: rgba(255,255,255,0.23);
+    }
+
+    .button-song {
+        color: white;
+        width: 150px;
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    .button-song.active-button {
+        background-color: rgba(255, 255, 255, 0.29);
+    }
+}
+.theme_3 .LyricAndComment {
+    .button-header {
+        background-color: rgba(0, 0, 0, 0.11);
+    }
+    .button-song {
+        color: #ffffff;
+        width: 150px;
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    .button-song.active-button {
+        background-color: rgba(0, 0, 0, 0.28);
+    }
+}
+
+.mount {
+    animation: moveTop 1s ease-in-out;
+}
+.unmount{
+    animation: moveBottom 1s ease-in-out;
+}
+
+@keyframes moveTop {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveBottom {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.card-enter {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.card-leave {
+    animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+}
