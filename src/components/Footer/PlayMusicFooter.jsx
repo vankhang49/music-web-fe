@@ -125,11 +125,10 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                             }}
                             icon={
                                 isPlayingSong ? <IoPause size={24} />
-                                    : <FaPlay size={18} />
+                                    : <FaPlay size={16} />
                             }
                             gd={{
                                 borderRadius: '50%',
-                                border: "1px solid white",
                                 padding: 5,
                     }}
                     />
