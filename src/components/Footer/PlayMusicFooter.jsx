@@ -3,7 +3,7 @@ import { CiHeart, CiMenuKebab } from "react-icons/ci";
 import { usePlayMusic } from "../../core/contexts/PlayMusicContext";
 import { useEffect, useRef, useState } from "react";
 import {FaPause, FaPlay} from "react-icons/fa";
-import {IoPause} from "react-icons/io5";
+import {IoPause, IoPlaySkipBack, IoPlaySkipForward} from "react-icons/io5";
 
 
 export function PlayMusicFooter({ callPlayLyrics }) {
@@ -116,6 +116,7 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                     ))} sizeImg={56}
                 onClick={window.innerWidth < 768 ? showPlayLyrics : null}
             >
+                <Button theme="reset" text="" icon={<CiHeart size={24} />} />
                 {
                     window.innerWidth < 768 &&
                     <Button theme="reset" text=""
@@ -130,11 +131,26 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                             gd={{
                                 borderRadius: '50%',
                                 padding: 5,
-                    }}
+                            }}
                     />
                 }
-                <Button theme="reset" text="" icon={<CiHeart size={24} />} />
-                <Button theme="reset" text="" icon={<CiMenuKebab size={22} />} />
+                {
+                    window.innerWidth < 768 ?
+                    <Button theme="reset" text=""
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleChangeSong(1);
+                            }}
+                            icon={<IoPlaySkipForward size={20} />}
+                            gd={{
+                                borderRadius: '50%',
+                                padding: 5,
+                            }}
+                    />
+                        :
+                        <Button theme="reset" text="" icon={<CiMenuKebab size={22} />} />
+                }
+
             </Card>
             <RenderIf isTrue={[3, 4, 5, 6].includes(breakpoints)} hiddenCSS>
                 <AudioPlayer
