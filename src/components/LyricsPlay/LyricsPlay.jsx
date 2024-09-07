@@ -87,29 +87,51 @@ export function LyricsPlay({showLyrics}) {
     const handlePlaySong = () => {
         isPlayingSong ? toggleIsPlayingSong(false) : toggleIsPlayingSong(true);
     }
+
     return (
-        <Flex justifyContent={'center'} gap={10} alignItems={'center'} gd={{width: '100%', height: '90vh'}}
+        <Flex justifyContent={'center'} flexWrap={'wrap'} gap={10} alignItems={'center'}
+              gd={{width: '100%', height: '90vh'}}
               children={
                   <>
-                      <Flex className={isPlayingSong  ? 'audio-card active' : 'audio-card'}>
-                          <Avatar shape={'square'} size={400} className={'audio-image'}
-                                  src={playSongList[songIndexList].coverImageUrl}></Avatar>
-                          <Flex justifyContent={"center"} alignItems={'center'} className={'audio-play'}>
+                      <Flex className={isPlayingSong ? 'audio-card active' : 'audio-card'}>
+                          <Avatar shape={window.innerWidth < 768 ? 'circle' : 'square'}
+                                  size={window.innerWidth < 768 ? 300 : 400}
+                                  className={'audio-image'}
+                                  src={playSongList[songIndexList].coverImageUrl}>
+
+                          </Avatar>
+                          <Flex justifyContent={"center"} alignItems={'center'}
+                                className={'audio-play'}
+                                gd={window.innerWidth < 768 ? {borderRadius: '50%'} : {}}
+                          >
                               <Button theme={'reset'}
                                       onClick={handlePlaySong}
                                       icon={
-                                  isPlayingSong ? <img src={wave} height={40} alt="wave"/>
-                                  : <FaPlay size={30} style={{paddingLeft: 5}} color={"white"}/>
-                              }></Button>
+                                          isPlayingSong ? <img src={wave} height={40} alt="wave"/>
+                                              : <FaPlay size={30} style={{paddingLeft: 5}} color={"white"}/>
+                                      }>
+
+                              </Button>
                           </Flex>
                       </Flex>
-                      <div className='lyrics-content' ref={lyricsRef} style={{
-                          width: '50%',
-                          height: '50vh', // Limits the visible area
-                          overflow: 'auto',
-                          fontSize: '1.6rem',
-                          scrollBehavior: 'smooth',
-                      }}>
+                      <div className='lyrics-content' ref={lyricsRef} style={
+                          window.innerWidth < 768 ?
+                              {
+                                  width: '100%',
+                                  height: '50vh', // Limits the visible area
+                                  overflow: 'auto',
+                                  fontSize: '1.6rem',
+                                  scrollBehavior: 'smooth',
+                              }
+                              :
+                              {
+                                  width: '50%',
+                                  height: '50vh', // Limits the visible area
+                                  overflow: 'auto',
+                                  fontSize: '1.6rem',
+                                  scrollBehavior: 'smooth',
+                              }
+                      }>
                           {/*// dangerouslySetInnerHTML={{__html: playSongList[songIndexList]?.lyrics}}>*/}
                           {lyricsWithTime.map((lyric, index) => (
                               <p

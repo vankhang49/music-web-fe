@@ -38,6 +38,16 @@
     animation: moveBottom 1s ease-in-out;
 }
 
+@media screen and (max-width: 580px) {
+    .card-enter {
+        display: none;
+    }
+
+    .card-enter.current {
+        display: block;
+    }
+}
+
 @keyframes moveTop {
     from {
         transform: translateY(100%);

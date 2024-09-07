@@ -2,6 +2,8 @@ import { AudioPlayer, AudioToolbar, Button, Card, Flex, Grid, Group, Input, Rend
 import { CiHeart, CiMenuKebab } from "react-icons/ci";
 import { usePlayMusic } from "../../core/contexts/PlayMusicContext";
 import { useEffect, useRef, useState } from "react";
+import {FaPause, FaPlay} from "react-icons/fa";
+import {IoPause} from "react-icons/io5";
 
 
 export function PlayMusicFooter({ callPlayLyrics }) {
@@ -95,6 +97,12 @@ export function PlayMusicFooter({ callPlayLyrics }) {
         callPlayLyrics();
     }
 
+    const handlePlaySong = () => {
+        isPlayingSong ? toggleIsPlayingSong(false) : toggleIsPlayingSong(true);
+        isPlayingSong? audioRef.current.pause() :  audioRef.current.play();
+
+    }
+
     return (
         <Grid columns={1} md={2} lg={3} gap={4} alignItems="center" className="w-full h-full c-m-0">
             <Card className="" srcImg={playSongList[songIndexList].coverImageUrl}
@@ -105,7 +113,27 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                             {artist.artistName}
                             {index !== playSongList[songIndexList].artists.length - 1 && <Typography tag={'span'}>, </Typography>}
                         </Typography>
-                    ))} sizeImg={56}>
+                    ))} sizeImg={56}
+                onClick={window.innerWidth < 768 ? showPlayLyrics : null}
+            >
+                {
+                    window.innerWidth < 768 &&
+                    <Button theme="reset" text=""
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handlePlaySong();
+                            }}
+                            icon={
+                                isPlayingSong ? <IoPause size={24} />
+                                    : <FaPlay size={18} />
+                            }
+                            gd={{
+                                borderRadius: '50%',
+                                border: "1px solid white",
+                                padding: 5,
+                    }}
+                    />
+                }
                 <Button theme="reset" text="" icon={<CiHeart size={24} />} />
                 <Button theme="reset" text="" icon={<CiMenuKebab size={22} />} />
             </Card>

@@ -36,6 +36,12 @@
 
 .audio-card {
     position: relative;
+
+    .audio-image {
+        img {
+            transition: transform 0.5s;
+        }
+    }
     .audio-play {
         position: absolute;
         width: 100%;
@@ -70,10 +76,32 @@
     .audio-play {
         opacity: 1;
     }
-    /*.audio-image {*/
-    /*    overflow: hidden;*/
-    /*    img {*/
-    /*        scale: 1.1;*/
-    /*    }*/
-    /*}*/
+
+}
+
+@media (max-width: 768px) {
+    .audio-card {
+        .audio-image {
+            img {
+                animation: none;
+            }
+        }
+    }
+
+    .audio-card.active {
+        .audio-image {
+            img {
+                animation: spin 8s linear infinite; /* Bắt đầu xoay khi phát nhạc */
+            }
+        }
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
