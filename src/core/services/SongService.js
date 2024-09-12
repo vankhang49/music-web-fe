@@ -1,12 +1,12 @@
 import axios from "axios";
 import axiosClient from "../../utils/axiosClient";
 
-const BASE_URL = "http://localhost:8080";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export async function getAllSongs() {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/songs`, {});
+            = await axios.get(`${apiUrl}/api/public/songs`, {});
         console.log(temp.data);
         return temp.data;
     } catch (e) {
@@ -18,7 +18,7 @@ export async function getAllSongs() {
 export async function getAllSuggestedSongs() {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/songs/page`, {});
+            = await axios.get(`${apiUrl}/api/public/songs/page`, {});
         console.log(temp.data);
         return temp.data.content;
     } catch (e) {
@@ -29,7 +29,7 @@ export async function getAllSuggestedSongs() {
 
 export const getSongById = async (songId) => {
     try {
-        const temp = await axios.get(`${BASE_URL}/api/public/songs/${songId}`);
+        const temp = await axios.get(`${apiUrl}/api/public/songs/${songId}`);
         console.log(temp.data);
         return temp.data;
     } catch (e) {

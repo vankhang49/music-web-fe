@@ -1,12 +1,12 @@
 import axios from "axios";
 import axiosClient from "../../utils/axiosClient";
 
-const BASE_URL = "http://localhost:8080";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const getAllArtist = async () => {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/artists`);
+            = await axios.get(`${apiUrl}/api/public/artists`);
         console.log(temp.data)
         return temp.data;
     } catch (e) {
@@ -17,7 +17,7 @@ export const getAllArtist = async () => {
 
 export const getArtistById = async (artistId) => {
     try {
-        const temp = await axios.get(`${BASE_URL}/api/public/artists/${artistId}`);
+        const temp = await axios.get(`${apiUrl}/api/public/artists/${artistId}`);
         console.log(temp.data)
         return temp.data;
     } catch (e) {

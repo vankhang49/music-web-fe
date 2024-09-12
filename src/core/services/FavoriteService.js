@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8080";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const getAllFavorite = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/api/auth/favorites`);
+        const response = await axios.get(`${apiUrl}/api/auth/favorites`);
         return response.data;
     } catch (e) {
         return [];

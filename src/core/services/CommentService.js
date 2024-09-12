@@ -2,11 +2,11 @@
 import axios from "axios";
 import axiosClient from "../../utils/axiosClient";
 
-const BASE_URL = "http://localhost:8080";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const getAllCommentsBySongId = async (songId, size) => {
     try {
-        const temp = await axios.get(`${BASE_URL}/api/public/comments/song/${songId}?size=${size}`);
+        const temp = await axios.get(`${apiUrl}/api/public/comments/song/${songId}?size=${size}`);
         return temp.data;
     } catch (error) {
         console.log(error);
@@ -16,7 +16,7 @@ export const getAllCommentsBySongId = async (songId, size) => {
 
 export const getAllRepliesByParentCommentId = async (parentCommentId, size) => {
     try {
-        const temp = await axios.get(`${BASE_URL}/api/public/comments/replies/${parentCommentId}?size=${size}`);
+        const temp = await axios.get(`${apiUrl}/api/public/comments/replies/${parentCommentId}?size=${size}`);
         return temp.data;
     } catch (error) {
         console.log(error);

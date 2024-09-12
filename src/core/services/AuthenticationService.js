@@ -3,13 +3,13 @@ import {jwtDecode} from "jwt-decode";
 import axiosClient from "../../utils/axiosClient";
 import { toast } from "react-toastify";
 
-const baseURL = "http://localhost:8080";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 axios.defaults.withCredentials = true;
 
 export const login = async (data) => {
     try {
-        const response = await axios.post(`${baseURL}/api/auth/authenticate`, data)
+        const response = await axios.post(`${apiUrl}/api/auth/authenticate`, data)
         console.log(response.data);
         return response.data;
     } catch (error) {
@@ -20,7 +20,7 @@ export const login = async (data) => {
 
 export const register = async (userData) => {
     try{
-        const response = await axios.post(`${baseURL}/api/auth/register`, userData)
+        const response = await axios.post(`${apiUrl}/api/auth/register`, userData)
         return response.data;
     }catch(error){
         throw error.response.data.errors;
@@ -67,7 +67,7 @@ export const isAuthenticated = () =>{
 }
 export const getRoles = async () => {
     try {
-        const response = await axiosClient.get(`${baseURL}/api/auth/user-role`)
+        const response = await axiosClient.get(`${apiUrl}/api/auth/user-role`)
         return response.data;
     } catch (e) {
         return [];
