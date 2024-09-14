@@ -15,6 +15,7 @@ export const PlayMusicProvider = ({ children }) => {
 
     const toggleIsPlayingSong = (state) => {
         setIsPlayingSong(state);
+        (state) ? audioRef.current.play() : audioRef.current.pause();
     };
 
     const changeSongIndex = (index) => {

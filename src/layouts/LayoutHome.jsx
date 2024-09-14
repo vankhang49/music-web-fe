@@ -14,9 +14,11 @@ import { navigationHomeItems1, navigationHomeItems2, navigationHomeItems3 } from
 import {LyricAndComment} from "../components/LyricAndComment/LyricAndComment";
 import { SidebarHomeMobile } from "../components/SideBar/SidebarHomeMobile";
 import {toast} from "react-toastify";
+import {PlayQueue} from "../components/Play-queue/PlayQueue";
 
 function LayoutHome() {
     const [isShowPlayLyrics, setShowPlayLyrics] = useState(false);
+    const [isShowQueues, setIsShowQueues] = useState(false);
     const {playSongList,} = usePlayMusic();
     const isAuthenticated = !!localStorage.getItem("isAuthenticated");
     const avatar = localStorage.getItem("avatar");
@@ -36,6 +38,10 @@ function LayoutHome() {
 
     const handleShowPlayLyrics = () => {
         setShowPlayLyrics(!isShowPlayLyrics);
+    }
+
+    const handleShowPlayList = () => {
+        setIsShowQueues(!isShowQueues);
     }
 
     return (
@@ -84,9 +90,10 @@ function LayoutHome() {
             </Group>
             <Footer ref={elementRefFooter} className={cn("flex items-center backdrop-blur", playSongList.length < 1 && "hidden")}
                     fixed gd={{ height: "78px" }}>
-                <PlayMusicFooter callPlayLyrics={handleShowPlayLyrics}/>
+                <PlayMusicFooter callPlayLyrics={handleShowPlayLyrics} callPlayList={handleShowPlayList} />
             </Footer>
             <LyricAndComment showLyrics={isShowPlayLyrics}></LyricAndComment>
+            <PlayQueue showPlayList={isShowQueues}></PlayQueue>
             <ModalUserAccess isOpen={openModalAvatar} onClose={() => setOpenModalAvatar(!openModalAvatar)} />
             <RenderIf isTrue={[0, 1, 2].includes(breakpoints)}>
                 <SidebarHomeMobile isOpen={openModalMenuHome} onClose={() => setOpenModalMenuHome(!openModalMenuHome)} />

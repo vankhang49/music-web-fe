@@ -14,6 +14,7 @@ import {AlbumCreate} from "../pages/Dashboard/Album/AlbumCreate";
 import {ArtistCreate} from "../pages/Dashboard/Artist/ArtistCreate";
 import {Album} from "../pages/Album/Album";
 import {LoginForm} from "../pages/Login/LoginForm";
+import {TopWeek} from "../pages/TopWeek/TopWeek";
 
 export const userRoutes = [
   {
@@ -28,6 +29,10 @@ export const userRoutes = [
   {
     path: '/m-chart',
     component: <MChart />,
+  },
+  {
+    path: '/m-chart-week/:national',
+    component: <TopWeek />,
   },
   {
     path: '/albums/:id',

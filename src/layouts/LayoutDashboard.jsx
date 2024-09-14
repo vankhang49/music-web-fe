@@ -24,7 +24,6 @@ function LayoutDashboard() {
     }
     const handleLogout=()=>{
         authenticationService.logout();
-        navigate("/login");
         toast.success("Đăng xuất thành công");
 
     }

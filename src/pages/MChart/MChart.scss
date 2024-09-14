@@ -1,8 +1,44 @@
-.gd_group .M-Chart{
-    height: calc(100% - 120px);
-    max-height: 500px;
-    display: flex;
-    canvas{
-        flex: 1;
+.gd_group {
+    .title-m-chart {
+        background: radial-gradient(50% 124.93% at 95.86% -10%, #3efad9 0, hsla(0, 0%, 100%, 0) 100%),
+        linear-gradient(91.56deg, #ff9357 1.54%, #9100ff 98.71%);
+        background-clip: text;
+        color: transparent;
+        font-size: 3rem;
+    }
+
+    .M-Chart{
+        height: calc(100% - 120px);
+        max-height: 500px;
+        display: flex;
+        background: rgba(60, 59, 59, 0.15);
+        canvas{
+            flex: 1;
+        }
+    }
+
+    .top-100 {
+        table {
+            .No {
+                width: 40px;
+                min-width: 0;
+                margin: 0;
+                font-size: 2rem;
+                font-weight: 900;
+                line-height: 1;
+                text-align: center;
+                color: rgba(74, 144, 226, 0);
+                -webkit-text-stroke: 1px #cdd0d3;
+            }
+            .is-top-1 {
+                -webkit-text-stroke: 1px #077bff;
+            }
+            .is-top-2 {
+                -webkit-text-stroke: 1px #2bb887;
+            }
+            .is-top-3 {
+                -webkit-text-stroke: 1px #e2614a;
+            }
+        }
     }
 }

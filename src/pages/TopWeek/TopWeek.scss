@@ -1,0 +1,18 @@
+
+.national {
+  margin: 30px;
+
+  a {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #ccc;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+  }
+  a.active {
+    color: var(--color-text);
+    border-bottom: 3px solid var(--color-text);
+  }
+
+}

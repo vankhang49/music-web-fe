@@ -11,9 +11,10 @@ import * as authenticationService from "../../core/services/AuthenticationServic
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {FaArrowLeftLong} from "react-icons/fa6";
 import {IoMdClose} from "react-icons/io";
-
+import {doSignInWithEmailAndPassword, doSignInWithFacebook, doSignInWithGoogle, useAuth} from '../../firebase'
 
 const ModalMenuSignUp = ({isOpen, onClose}) => {
+    // const {userLoggedIn} = useAuth()
     const [isSignIn, setIsSignIn] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
     const isAuthenticated = authenticationService.isAuthenticated();
@@ -77,6 +78,12 @@ const ModalMenuSignUp = ({isOpen, onClose}) => {
         try {
             const userData = await authenticationService.register(data);
             if (userData.statusCode === 200) {
+                const { newEmail, newPassword } = data; // Lấy giá trị từ object ban đầu
+                const dataLogin = {
+                    email: newEmail,
+                    password: newPassword
+                };
+                await handleSignInSubmit(dataLogin);
                 toast.success(userData.message);
             }
             // handleResetSignUp();
@@ -86,16 +93,26 @@ const ModalMenuSignUp = ({isOpen, onClose}) => {
             // handleResetSignUp();
         }
     };
-    const onGoogleSignIn = (e) => {
-        // e.preventDefault()
-        // if (!isSigningIn) {
-        //     setIsSigningIn(true)
-        //     doSignInWithGoogle().catch(err => {
-        //         setIsSigningIn(false)
-        //     })
-        // }
-    }
+    // const onGoogleSignIn = (e) => {
+    //     e.preventDefault()
+    //     if (!isSignIn) {
+    //         setIsSignIn(true)
+    //         doSignInWithGoogle().catch(err => {
+    //             setIsSignIn(false)
+    //         })
+    //     }
+    // }
+    // const onFacebookSignIn = (e) => {
+    //     e.preventDefault()
+    //     if (!isSignIn) {
+    //         setIsSignIn(true)
+    //         doSignInWithFacebook().catch(err => {
+    //             setIsSignIn(false);
+    //         })
+    //     }
+    // }
     return (
+
         <Modal isOpen={isOpen} onClose={onClose} gd={{padding: "0.5rem"}} className="shadow shadow-slate-400">
             <>
                 {!isSignIn && !isSignUp && (
@@ -122,20 +139,23 @@ const ModalMenuSignUp = ({isOpen, onClose}) => {
                                 gap={8}
                                 rounded="rounded-full"
                                 className="w-3/4"
-                                onClick={(e) => {
-                                    onGoogleSignIn(e)
-                                }}
+                                // onClick={(e) => {
+                                //     onGoogleSignIn(e)
+                                // }}
 
                             />
                             <Button
                                 disabled={isSignIn}
                                 theme="sign_up"
                                 size={4}
-                                text= {isSignIn ? 'Đang đăng nhập ...' : 'Đăng nhập với Google'}
+                                text= {isSignIn ? 'Đang đăng nhập ...' : 'Đăng nhập với Facebook'}
                                 icon={<Facebook/>}
                                 gap={8}
                                 rounded="rounded-full"
                                 className="w-3/4"
+                                // onClick={(e) => {
+                                //     onFacebookSignIn(e)
+                                // }}
                             />
                             <Flex>
                                 <Typography>Bạn chưa có tài khoản ?</Typography>
@@ -256,6 +276,7 @@ const ModalMenuSignUp = ({isOpen, onClose}) => {
                 )}
             </>
         </Modal>
+
     );
 };
 

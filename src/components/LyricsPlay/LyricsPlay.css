@@ -42,6 +42,7 @@
             transition: transform 0.5s;
         }
     }
+
     .audio-play {
         position: absolute;
         width: 100%;
@@ -76,7 +77,6 @@
     .audio-play {
         opacity: 1;
     }
-
 }
 
 @media (max-width: 768px) {

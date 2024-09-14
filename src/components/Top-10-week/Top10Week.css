@@ -1,0 +1,29 @@
+.top-10-week {
+    background: var(--bg-content);
+    min-height: 600px;
+    max-height: 700px;
+    .top-100 {
+        table {
+            .No {
+                width: 40px;
+                min-width: 0;
+                margin: 0;
+                font-size: 2rem;
+                font-weight: 900;
+                line-height: 1;
+                text-align: center;
+                color: rgba(74, 144, 226, 0);
+                -webkit-text-stroke: 1px #cdd0d3;
+            }
+            .is-top-1 {
+                -webkit-text-stroke: 1px #077bff;
+            }
+            .is-top-2 {
+                -webkit-text-stroke: 1px #2bb887;
+            }
+            .is-top-3 {
+                -webkit-text-stroke: 1px #e2614a;
+            }
+        }
+    }
+}

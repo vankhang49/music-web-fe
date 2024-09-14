@@ -87,19 +87,16 @@ export function LyricsPlay({showLyrics}) {
     const handlePlaySong = () => {
         isPlayingSong ? toggleIsPlayingSong(false) : toggleIsPlayingSong(true);
     }
-
     return (
         <Flex justifyContent={'center'} flexWrap={'wrap'} gap={10} alignItems={'center'}
               gd={{width: '100%', height: '90vh'}}
               children={
                   <>
-                      <Flex className={isPlayingSong ? 'audio-card active' : 'audio-card'}>
+                      <Flex className={isPlayingSong  ? 'audio-card active' : 'audio-card'}>
                           <Avatar shape={window.innerWidth < 768 ? 'circle' : 'square'}
                                   size={window.innerWidth < 768 ? 300 : 400}
                                   className={'audio-image'}
-                                  src={playSongList[songIndexList].coverImageUrl}>
-
-                          </Avatar>
+                                  src={playSongList[songIndexList].coverImageUrl}></Avatar>
                           <Flex justifyContent={"center"} alignItems={'center'}
                                 className={'audio-play'}
                                 gd={window.innerWidth < 768 ? {borderRadius: '50%'} : {}}
@@ -107,11 +104,9 @@ export function LyricsPlay({showLyrics}) {
                               <Button theme={'reset'}
                                       onClick={handlePlaySong}
                                       icon={
-                                          isPlayingSong ? <img src={wave} height={40} alt="wave"/>
-                                              : <FaPlay size={30} style={{paddingLeft: 5}} color={"white"}/>
-                                      }>
-
-                              </Button>
+                                  isPlayingSong ? <img src={wave} height={40} alt="wave"/>
+                                  : <FaPlay size={30} style={{paddingLeft: 5}} color={"white"}/>
+                              }></Button>
                           </Flex>
                       </Flex>
                       <div className='lyrics-content' ref={lyricsRef} style={

@@ -7,12 +7,17 @@ import {usePlayMusic} from "../../core/contexts/PlayMusicContext";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
 import {ReplyComponent} from "./ReplyComponent";
+import {over} from 'stompjs';
+import {Stomp} from "@stomp/stompjs";
+import SockJS from 'sockjs-client';
+import { BiSolidDislike } from "react-icons/bi";
 import haha from "../../assets/gif/haha.gif";
 import love from "../../assets/gif/love.gif";
 import wow from "../../assets/gif/wow.gif";
 import dislike from "../../assets/gif/dislike.gif";
 import like from "../../assets/gif/like.gif";
 
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -33,6 +38,8 @@ export function CommentBox({openComment, callOpenComment}) {
     const [isReply, setIsReply] = useState(false);
     const [commentId, setCommentId] = useState(null);
     const songId = playSongList[songIndexList].songId;
+    const urlSocketRef = useRef('');
+    const [stompClient, setStompClient] = useState(null);
 
     useEffect(() => {
         if (songId !== undefined) {
@@ -46,6 +53,53 @@ export function CommentBox({openComment, callOpenComment}) {
     useEffect(() => {
         setIsOpenComment(openComment);
     }, [openComment]);
+
+    useEffect(() => {
+        const socket = new SockJS(`${BASE_URL}/ws`);
+        const stompClient = Stomp.over(socket);
+        stompClient.connect({}, () => {
+            stompClient.subscribe("/topic/comment", async (message) => {
+                    console.log("useEffect ở load comment đang hoaạt động")
+                    if (songId !== undefined) {
+                        const fetchData = async () => {
+                            await getAllCommentBySong(songId, size)
+                        }
+                        fetchData();
+                    }
+                }
+            )
+        });
+        setStompClient(stompClient);
+        return () => {
+            if (stompClient) {
+                stompClient.disconnect();
+            }
+        };
+    }, [size, songId]);
+
+    useEffect(() => {
+        const socket = new SockJS(`${BASE_URL}/ws`);
+        const stompClient = Stomp.over(socket);
+        stompClient.connect({}, () => {
+            stompClient.subscribe("/topic/createComment", async (message) => {
+                    toast.dark("Vừa có bình luận mới!", {autoClose: 500})
+                console.log(message)
+                    if (songId !== undefined) {
+                        const fetchData = async () => {
+                            await getAllCommentBySong(songId, size)
+                        }
+                        fetchData();
+                    }
+                }
+            )
+        });
+        setStompClient(stompClient);
+        return () => {
+            if (stompClient) {
+                stompClient.disconnect();
+            }
+        };
+    }, [size, songId]);
 
     const getAllCommentBySong = async (songId, size) => {
         const temp = await commentService.getAllCommentsBySongId(songId, size);
@@ -68,9 +122,15 @@ export function CommentBox({openComment, callOpenComment}) {
             content: data.content,
             song: playSongList[songIndexList],
         };
+        urlSocketRef.current = "/app/sendComment";
         try {
             await commentService.saveComment(newComment);
-
+            const socket = new SockJS(`${BASE_URL}/ws`);
+            const stompClient = over(socket);
+            stompClient.connect({}, () => {
+                stompClient.send(urlSocketRef.current, {}, JSON.stringify(newComment));
+                console.log("urlSocket ở create: ", urlSocketRef.current)
+            });
             toast.dark("Đăng tải thành công!");
             await getAllCommentBySong(songId, size);
             resetComment();
@@ -88,9 +148,15 @@ export function CommentBox({openComment, callOpenComment}) {
             parentComment: JSON.parse(data.parentComment),
         };
         newReply.parentComment.replies = null;
+        urlSocketRef.current = "/app/sendComment";
         try {
             await commentService.saveComment(newReply);
-
+            const socket = new SockJS(`${BASE_URL}/ws`);
+            const stompClient = over(socket);
+            stompClient.connect({}, () => {
+                stompClient.send(urlSocketRef.current, {}, JSON.stringify(newReply));
+                console.log("urlSocket ở create: ", urlSocketRef.current)
+            });
             toast.dark("Đăng tải thành công!");
             await getAllCommentBySong(songId, size);
             resetReply();

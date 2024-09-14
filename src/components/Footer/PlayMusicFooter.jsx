@@ -2,13 +2,16 @@ import { AudioPlayer, AudioToolbar, Button, Card, Flex, Grid, Group, Input, Rend
 import { CiHeart, CiMenuKebab } from "react-icons/ci";
 import { usePlayMusic } from "../../core/contexts/PlayMusicContext";
 import { useEffect, useRef, useState } from "react";
-import {FaPause, FaPlay} from "react-icons/fa";
-import {IoPause, IoPlaySkipBack, IoPlaySkipForward, IoPlaySkipForwardSharp} from "react-icons/io5";
+import {IoPause, IoPlaySkipForwardSharp} from "react-icons/io5";
 import {IoMdPlay} from "react-icons/io";
+import * as songService from "../../core/services/SongService";
 
 
-export function PlayMusicFooter({ callPlayLyrics }) {
+export function PlayMusicFooter({ callPlayLyrics, callPlayList }) {
     const audioPlayerRef = useRef(null);
+    const [hasReachedHalf, setHasReachedHalf] = useState(false);  // Đánh dấu xem đã đạt đến một nửa thời gian phát thực tế chưa
+    const [playTime, setPlayTime] = useState(0);  // Bộ đếm thời gian phát thực tế
+    const playIntervalRef = useRef(null);
     const breakpoints = useResponsive([480, 640, 768, 1024, 1280, 1536])
     const {
         playSongList,
@@ -19,9 +22,63 @@ export function PlayMusicFooter({ callPlayLyrics }) {
         changeSongIndex
     } = usePlayMusic();
 
+    // Hàm cập nhật lượt nghe
+    const updatePlayCount = async () => {
+        await songService.updateListens(playSongList[songIndexList]);
+    };
+
+    // Hàm bắt đầu bộ đếm thời gian phát thực tế
+    const startCountingPlayTime = () => {
+        if (!playIntervalRef.current) {
+            playIntervalRef.current = setInterval(() => {
+                setPlayTime(prevTime => prevTime + 1);
+            }, 1000); // Tính thời gian phát theo giây
+        }
+    };
+
+    const stopCountingPlayTime = () => {
+        if (playIntervalRef.current) {
+            clearInterval(playIntervalRef.current);
+            playIntervalRef.current = null;
+        }
+    };
+
+    // Theo dõi khi bài hát phát hoặc tạm dừng để cập nhật bộ đếm thời gian
+    useEffect(() => {
+        if (isPlayingSong) {
+            startCountingPlayTime();
+        } else {
+            stopCountingPlayTime();
+        }
+
+        return () => stopCountingPlayTime(); // Dừng khi component unmount
+    }, [isPlayingSong]);
+
+    // Khi tổng thời gian phát lớn hơn hoặc bằng nửa bài hát thì cập nhật lượt nghe
+    useEffect(() => {
+        if (audioRef.current) {
+            const songDuration = audioRef.current.duration;
+            if (playTime >= songDuration / 2 && !hasReachedHalf) {
+                setHasReachedHalf(true);
+                const fetchData = async ()=> {
+                    await updatePlayCount(); 
+                }
+                fetchData();
+            }
+        }
+    }, [playTime, audioRef, playSongList, songIndexList, hasReachedHalf]);
+
+    // Reset lại bộ đếm và trạng thái khi chuyển sang bài hát mới
+    useEffect(() => {
+        setPlayTime(0);
+        setHasReachedHalf(false);
+    }, [songIndexList]);
+
     const audioPlayerState = JSON.parse(localStorage.getItem("audioPlayerState"));
     const [isRandom, setIsRandom] = useState(audioPlayerState !== null ? audioPlayerState.random : false);
     const [loopSong, setLoopSong] = useState(audioPlayerState !== null ? audioPlayerState.loop : 0);
+
+
 
     const handleChangeSong = (value) => {
         if (value === -1) {
@@ -98,10 +155,12 @@ export function PlayMusicFooter({ callPlayLyrics }) {
         callPlayLyrics();
     }
 
+    const showPlayList = () => {
+        callPlayList();
+    }
+
     const handlePlaySong = () => {
         isPlayingSong ? toggleIsPlayingSong(false) : toggleIsPlayingSong(true);
-        isPlayingSong? audioRef.current.pause() :  audioRef.current.play();
-
     }
 
     return (
@@ -115,7 +174,7 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                             {index !== playSongList[songIndexList].artists.length - 1 && <Typography tag={'span'}>, </Typography>}
                         </Typography>
                     ))} sizeImg={56}
-                onClick={window.innerWidth < 768 ? showPlayLyrics : null}
+                  onClick={window.innerWidth < 768 ? showPlayLyrics : null}
             >
                 <Button theme="reset" text="" icon={<CiHeart size={24} />} />
                 {
@@ -137,21 +196,20 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                 }
                 {
                     window.innerWidth < 768 ?
-                    <Button theme="reset" text=""
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                handleChangeSong(1);
-                            }}
-                            icon={<IoPlaySkipForwardSharp size={20} />}
-                            gd={{
-                                borderRadius: '50%',
-                                padding: 5,
-                            }}
-                    />
+                        <Button theme="reset" text=""
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleChangeSong(1);
+                                }}
+                                icon={<IoPlaySkipForwardSharp size={20} />}
+                                gd={{
+                                    borderRadius: '50%',
+                                    padding: 5,
+                                }}
+                        />
                         :
                         <Button theme="reset" text="" icon={<CiMenuKebab size={22} />} />
                 }
-
             </Card>
             <RenderIf isTrue={[3, 4, 5, 6].includes(breakpoints)} hiddenCSS>
                 <AudioPlayer
@@ -165,7 +223,11 @@ export function PlayMusicFooter({ callPlayLyrics }) {
                 />
             </RenderIf>
             <RenderIf isTrue={[4, 5, 6].includes(breakpoints)}>
-                <AudioToolbar onVolumeChange={(volume) => handleSetVolume(volume)} gd={{ marginLeft: "auto" }} onClickLyric={showPlayLyrics}/>
+                <AudioToolbar onVolumeChange={(volume) => handleSetVolume(volume)}
+                              gd={{ marginLeft: "auto" }}
+                              onClickLyric={showPlayLyrics}
+                              onClickPlaylist={showPlayList}
+                />
             </RenderIf>
         </Grid>
     )

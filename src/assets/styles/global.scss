@@ -1,16 +1,22 @@
 :root {
     --bg-comment: #34214e;
     --bg-content-comment: rgba(62,41,73,0.88);
+    --bg-content: #34214e;
+    --color-text: #fff;
 }
 
 .theme_3 {
     --bg-comment: rgb(30 27 75);
     --bg-content-comment: rgba(59, 57, 87, 0.87);
+    --bg-content: rgba(99, 102, 241, 0.3);
+    --color-text: #fff;
 }
 
 .theme_4 {
     --bg-comment: rgb(76 5 25);
     --bg-content-comment: rgb(71, 41, 49);
+    --bg-content: rgba(244, 63, 94, 0.3);
+    --color-text: #fff;
 }
 
 

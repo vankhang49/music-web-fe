@@ -1,0 +1,83 @@
+.queue {
+    max-width: 350px;
+    min-width: 250px;
+    width: 100%;
+    height: calc(100vh - 78px);
+    position: fixed;
+    border-radius: 0;
+    z-index: 90;
+    top: 0;
+    right: 0;
+    background: var(--bg-content)!important;
+    backdrop-filter: blur(10px);
+    transform: translateX(100%);
+    transition: transform 1s ease;
+
+    .button-header {
+        background-color: rgba(0, 0, 0, 0.11);
+        border-radius: 25px;
+    }
+    .button-song {
+        color: #ffffff;
+        width: 100px;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 0.8rem;
+
+    }
+
+    .button-song.active-button {
+        background-color: rgba(0, 0, 0, 0.28);
+    }
+
+    .queue-content {
+        position: relative;
+        .current-song {
+            border-radius: 10px;
+            position: sticky;
+            top: 5vh;
+            z-index: 10;
+            .song {
+                background-color: var(--bg-comment);
+                border-radius: 10px;
+            }
+
+        }
+
+        .audio-card {
+            position: relative;
+
+            .audio-play {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                background: rgba(0, 0, 0, 0.6);
+
+                button {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 0;
+                    border: none;
+                }
+            }
+        }
+
+        .audio-card:hover {
+            .audio-play {
+                opacity: 1;
+            }
+        }
+
+        .audio-card.active {
+            .audio-play {
+                opacity: 1;
+            }
+        }
+
+    }
+}
+
+.queue.active-queue {
+    transform: translateX(0);
+}

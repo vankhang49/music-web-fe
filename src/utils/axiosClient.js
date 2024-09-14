@@ -25,12 +25,6 @@ axiosClient.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       console.error('Lỗi 401: Unauthorized');
       // localStorage.removeItem('user');
-      //   localStorage.removeItem('role');
-      //   localStorage.removeItem('isAuthenticated');
-      //   localStorage.removeItem('lastTime');
-      //   localStorage.removeItem('fullName');
-      //   localStorage.removeItem('avatar');
-      //   localStorage.removeItem('id');
       // toast.warning("Đã hết phiên đăng nhập");
       // setTimeout(() => {
       //   window.location.href = '/login';

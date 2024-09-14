@@ -80,7 +80,7 @@ export function Album(){
     return(
         <Container withShadow={false} gd={{ overflow: "hidden" }}>
             <Flex justifyContent="space-between" alignItems="flex-start" flexWrap="wrap">
-                <Group gd={{backgroundColor: 'transparent', textAlign: 'center', width: '25%'}} >
+                <Group gd={{backgroundColor: 'transparent', textAlign: 'center', minWidth: '25%', maxWidth:'100%'}} >
                     <Card srcImg={album.coverImageUrl}>
                         <Typography tag={"h1"}>{album.title}</Typography>
                         <Flex center>
@@ -99,7 +99,7 @@ export function Album(){
                         </Flex>
                     </Card>
                 </Group>
-                <Group gd={{backgroundColor: 'transparent', width: '74%'}}>
+                <Group gd={{backgroundColor: 'transparent', minWidth: '74%', maxWidth:'100%'}}>
                     {album.songs && <Table border={false} columns={columns} data={album.songs} rowKey={"id"}
                                            className="custom-table" onClickRow={(index) => handlePlaySong(index)}
                     />}
@@ -107,7 +107,7 @@ export function Album(){
             </Flex>
             <Group>
                 <Typography tag={"h2"}>Nghệ sĩ tham gia</Typography>
-                <Grid columns={5} lg={5} md={3} sm={3} xs={2}>
+                <Grid columns={2} xs={2} sm={3} md={3} lg={5}>
                     {album.artists && album.artists.map(artist => (
                         <Card key={artist} shape="circle" srcImg={artist.avatar} alt={artist.artistName} title={artist.artistName} description="55tr lượt xem" />
                     ))}
