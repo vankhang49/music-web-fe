@@ -1,4 +1,4 @@
-import {Button, Card, Container, Flex, Group, Table, Typography} from "lvq";
+import {Anchor, Button, Card, Container, Flex, Group, Table, Typography} from "lvq";
 import {Link, useParams} from "react-router-dom";
 import {usePlayMusic} from "../../core/contexts/PlayMusicContext";
 import React, {useEffect, useState} from "react";
@@ -76,9 +76,15 @@ export function TopWeek() {
                         icon={<FaPlayCircle size={40} color={'#a317e6'}/>}></Button>
             </Typography>
             <Flex justifyContent={'start'} alignItems={'center'} className="national">
-                <Link to={'/m-chart-week/Việt Nam'} className={national === 'Việt Nam' && 'active'}>Việt Nam</Link>
-                <Link to={'/m-chart-week/Âu Mỹ'} className={national === 'Âu Mỹ' && 'active'}>Âu Mỹ</Link>
-                <Link to={'/m-chart-week/Hàn Quốc'} className={national === 'Hàn Quốc' && 'active'}>Hàn Quốc</Link>
+                <Anchor LinkComponent={Link} to={'/m-chart-week/Việt Nam'}
+                        className={national === 'Việt Nam' && 'active'}
+                 >Việt Nam</Anchor>
+                <Anchor LinkComponent={Link} to={'/m-chart-week/Âu Mỹ'}
+                        className={national === 'Âu Mỹ' && 'active'}
+                >Âu Mỹ</Anchor>
+                <Anchor LinkComponent={Link} to={'/m-chart-week/Hàn Quốc'}
+                        className={national === 'Hàn Quốc' && 'active'}
+                >Hàn Quốc</Anchor>
             </Flex>
             <Group className="top-100">
                 {top100 && <Table border={false} columns={columns} data={top100} rowKey={"id"}

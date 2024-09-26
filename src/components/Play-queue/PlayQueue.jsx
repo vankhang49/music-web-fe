@@ -82,7 +82,7 @@ export function PlayQueue({showPlayList}) {
                             </Card>
                             <Flex justifyContent={"center"} alignItems={'center'}
                                   className={'audio-play'}
-                                  gd={{width: 56, height: 56, margin: '5px 0'}}
+                                  gd={{width: 56, height: 56, margin: 10}}
                             >
                                 <Button theme={'reset'}
                                         onClick={() => handlePlaySongIndex(index)}
@@ -95,7 +95,7 @@ export function PlayQueue({showPlayList}) {
                     <Group className={'current-song'} gd={{position: 'sticky', top: 0}}>
                         <Flex className={isPlayingSong ? 'audio-card active' : 'audio-card'}>
                             <Card className={'song'}
-                                  srcImg={playSongList[songIndexList].coverImageUrl}
+                                  srcImg={playSongList[songIndexList]?.coverImageUrl}
                                   title={<Typography tag={"p"} gd={{fontSize: '.9rem'}}>
                                       {playSongList[songIndexList]?.title}</Typography>}
                                   long description={

@@ -132,11 +132,11 @@ export const themeConfig = {
       id: 9,
       ui: "Typography",
       themeClasses: {
-        default: "bg-green-500 text-white",
-        theme_1: "bg-zinc-950 text-white shadow-white",
-        theme_2: "bg-white text-black border-gray-300",
-        theme_3: "text-gray",
-        theme_4: "text-white"
+        default: "",
+        theme_1: "",
+        theme_2: "",
+        theme_3: "",
+        theme_4: ""
       },
     },
     {
@@ -188,6 +188,17 @@ export const themeConfig = {
         default: "px-4 text-[#dadada]",
         theme_1: "",
         theme_2: "text-black",
+      },
+    },
+    {
+      id: 15,
+      ui: "Anchor",
+      themeClasses: {
+        default: "text-white",
+        theme_1: "text-white",
+        theme_2: "text-black",
+        theme_3: "text-white",
+        theme_4: "text-white",
       },
     },
     {

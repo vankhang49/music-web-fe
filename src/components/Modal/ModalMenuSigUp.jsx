@@ -141,7 +141,7 @@ const ModalMenuSignUp = ({ isOpen, onClose }) => {
               <Label>
                 <b style={{ textDecoration: "underline" }}>Quên mật khẩu ?</b>
               </Label>
-              <Label>
+              <Label >
                 Việc bạn tiếp tục sử dụng trang web này đồng nghĩa bạn đồng ý
                 với <a href="">điều khoản sử dụng</a> của chúng tôi
               </Label>

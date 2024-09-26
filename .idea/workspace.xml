@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b7af0de-8e9f-4293-bdb7-f20de04c0b71" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/SonTungAlbum.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/albumsWantToListen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/songSuggestions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Music-Streaming-FE.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/lt.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/son-tung-mtp/lt.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/nnca.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/son-tung-mtp/nnca.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/global.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chart/LineChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chart/LineChart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/PlayMusicFooter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/PlayMusicFooter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalMenuSigUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalMenuSigUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalMenuSign.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalMenuSign.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Play-queue/PlayQueue.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Play-queue/PlayQueue.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/contexts/PlayMusicContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/contexts/PlayMusicContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/AlbumService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/AlbumService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/ArtistService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/ArtistService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/AuthenticationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/AuthenticationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/SongService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/SongService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/AuthContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/firebaseConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/firebaseConfig.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/LayoutDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/LayoutDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layouts/LayoutHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/LayoutHome.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/lvq.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/lvq.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Album/Album.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Album/Album.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Album/Album.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Album/Album.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Album/AlbumCreate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Album/AlbumCreate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Artist/ArtistCreate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Artist/ArtistCreate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Song/SongCreate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Song/SongCreate.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/HomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/MChart/MChart.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/MChart/MChart.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TopWeek/TopWeek.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopWeek/TopWeek.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2maaSM995nN1HQ07veSDXj71Ni6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\my_project\music-web-fe\src\assets\images\son-tung-mtp" />
+      <recent name="D:\my_project\music-web-fe\src\assets\images\national" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-WS-242.20224.342" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b7af0de-8e9f-4293-bdb7-f20de04c0b71" name="Changes" comment="" />
+      <created>1727317139454</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727317139454</updated>
+      <workItem from="1727317141309" duration="10767000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

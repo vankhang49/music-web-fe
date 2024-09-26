@@ -4,8 +4,8 @@ import mv3 from "../assets/audio/NoiNayCoAnh-SonTungMTP-4772041.mp3";
 import mv4 from "../assets/audio/Imagine-Dragons-Thunder-(RawPraise.ng).mp3";
 import mv5 from "../assets/audio/NgayDauSauChiaTay-DucPhuc-15004525.mp3";
 import ex from "../assets/images/ex.jpg";
-import lt from "../assets/images/lt.jpg";
-import nnca from "../assets/images/nnca.jpg";
+import lt from "../assets/images/son-tung-mtp/lt.jpg";
+import nnca from "../assets/images/son-tung-mtp/nnca.jpg";
 import ndsct from "../assets/images/ndsct.jpg";
 import td from "../assets/images/td.jpg";
 import { IoIosAdd } from "react-icons/io";
@@ -26,9 +26,12 @@ import { IoMusicalNotes } from "react-icons/io5";
 import { GiMicrophone } from "react-icons/gi";
 import { BiSolidAlbum } from "react-icons/bi";
 import { RiPlayList2Line } from "react-icons/ri";
+import {ThemeSwitcher} from "lvq";
+import React from "react";
 
 export const songsData = [
     {
+        "songId": 1,
         "title" : "Em Xinh",
         "artists" : [
             {
@@ -41,6 +44,7 @@ export const songsData = [
         "songUrl" : mv1
     },
     {
+        "songId": 2,
         "title" : "Lạc Trôi",
         "artists" : [
             {
@@ -53,6 +57,7 @@ export const songsData = [
         "songUrl" : mv2
     },
     {
+        "songId": 3,
         "title" : "Nơi này có anh",
         "artists" : [
             {
@@ -65,6 +70,7 @@ export const songsData = [
         "songUrl" : mv3
     },
     {
+        "songId": 4,
         "title" : "Ngày Đầu Sau Chia Tay",
         "artists" : [
             {
@@ -77,6 +83,7 @@ export const songsData = [
         "songUrl" : mv5
     },
     {
+        "songId": 5,
         "title" : "Thunder",
         "artists" : [
             {
@@ -89,6 +96,7 @@ export const songsData = [
         "songUrl" : mv4
     }
 ]
+
 export const navigationHomeItems1 = [
     { id: 'library', label: 'Thư viện', link: '/mymusic', icon: <Library />, iconPosition: 'left' },
     { id: 'home', label: 'Khám phá', link: '/', icon: <Discover />, iconPosition: 'left' },
@@ -103,6 +111,7 @@ export const navigationHomeItems2 = [
     { id: 'love-song', label: 'Bài hát yêu thích', link: '/love-song', icon: <LoveSong />, iconPosition: 'left' },
     { id: 'playlist', label: 'Playlist', link: '/playlist', icon: <Playlist />, iconPosition: 'left' },
     { id: 'album', label: 'Album', link: '/album', icon: <Album />, iconPosition: 'left' },
+    { id: 'setting', label: 'Giao diện', icon: <ThemeSwitcher />, iconPosition: 'left' },
 ];
 
 export const navigationHomeItems3 = [

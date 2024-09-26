@@ -4,9 +4,10 @@ import { getAnalytics } from "firebase/analytics";
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import { getDatabase } from "firebase/database";
 import { getAuth, signInWithCustomToken } from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
+//
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -20,12 +21,23 @@ const firebaseConfig = {
   measurementId: "G-NB16DCLZSZ"
 };
 
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD-xdvK4rbjAXbaZh85suOqn9rXRRbuOtc",
+//   authDomain: "logingo-4d97c.firebaseapp.com",
+//   projectId: "logingo-4d97c",
+//   storageBucket: "logingo-4d97c.appspot.com",
+//   messagingSenderId: "646989480913",
+//   appId: "1:646989480913:web:ea6572aac0f2dd355916f0"
+// };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);  // Initialize Firebase app with configuration
 const analytics = getAnalytics(app);  // Initialize Firebase analytics
 const database = getDatabase(app);    // Get a reference to the Firebase Realtime Database
 const storage = getStorage(app);      // Get a reference to Firebase Storage
 const auth = getAuth(app);            // Get a reference to Firebase Authentication
+
 
 // Initialize Firebase Storage
 export { app, analytics, database, storage, ref, getDownloadURL, auth, signInWithCustomToken };

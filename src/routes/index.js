@@ -15,6 +15,7 @@ import {ArtistCreate} from "../pages/Dashboard/Artist/ArtistCreate";
 import {Album} from "../pages/Album/Album";
 import {LoginForm} from "../pages/Login/LoginForm";
 import {TopWeek} from "../pages/TopWeek/TopWeek";
+import {Artist} from "../pages/Artist/Artist";
 
 export const userRoutes = [
   {
@@ -37,6 +38,10 @@ export const userRoutes = [
   {
     path: '/albums/:id',
     component: <Album/>,
+  },
+  {
+    path: '/artists/:artistName',
+    component: <Artist/>,
   },
   // {
   //   path: '/login',

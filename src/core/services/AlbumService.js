@@ -46,7 +46,7 @@ export const getAlbumById = async (albumId) => {
         return temp.data;
     } catch (e) {
         console.log(e)
-        return {}
+        return null;
     }
 }
 
@@ -56,7 +56,7 @@ export const saveAlbum = async (album) => {
         return temp.data;
     } catch (e) {
         console.log(e)
-        return {};
+        throw e.response?.data;
     }
 }
 
@@ -66,6 +66,6 @@ export const updateAlbum = async (album) => {
         return temp.data;
     } catch (e) {
         console.log(e)
-        return {};
+        throw e.response?.data;
     }
 }

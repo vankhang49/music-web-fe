@@ -80,6 +80,14 @@ export function AlbumCreate() {
     }
 
     const onSubmit = async (data) => {
+        if (addArtists.length < 1) {
+            setValidateError({artists: "Nghệ sĩ không được để trống!"});
+            return;
+        }
+        if (coverImageUrl === null) {
+            setValidateError({coverImageUrl: "Ảnh bìa không được để trống!"});
+            return;
+        }
         try {
             data.coverImageUrl = coverImageUrl;
             data.artists = addArtists;
@@ -90,7 +98,9 @@ export function AlbumCreate() {
                 await albumService.saveAlbum(data);
             }
             toast.success("Thêm mới album thành công!");
-        } catch (error) {
+        } catch (e) {
+            setValidateError(e.errorMessage);
+            if(validateError) return toast.warn("Kiểm tra lại việc nhập!");
             toast.error("Thêm mới thất bại!");
         }
     }
@@ -134,7 +144,8 @@ export function AlbumCreate() {
                                        required: "Không được để trống!"
                                    })}
                             />
-                            <ErrorMessage />
+                            <ErrorMessage condition={errors} message={errors?.title?.message} />
+                            <ErrorMessage condition={validateError} message={validateError?.title}/>
                         </Label>
                         <Label>
                             <Typography>Nghệ sĩ thực hiện</Typography>
@@ -146,8 +157,8 @@ export function AlbumCreate() {
                                                 value={JSON.stringify(artist)} text={artist.artistName}></Option>
                                     ))}
                                 </Select>
-                                <ErrorMessage />
                             </Flex>
+                            <ErrorMessage condition={validateError} message={validateError?.artists}/>
                             <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>
                                 {addArtists && addArtists.map((artist, index) => (
                                     <Flex key={artist.artistId}
@@ -182,8 +193,8 @@ export function AlbumCreate() {
                             <Flex>
                                 <UploadOneImage className='form-label-child'
                                                 onImageUrlChange={(url) => handleOneImageUrlChange(url)}/>
-                                <ErrorMessage />
                             </Flex>
+                            <ErrorMessage condition={validateError} message={validateError?.coverImageUrl}/>
                             <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>
                                 {coverImageUrl &&
                                     <Flex justifyContent="start" alignItems="center"
@@ -220,7 +231,8 @@ export function AlbumCreate() {
                                        required: "Không được để trống!"
                                    })}
                             />
-                            <ErrorMessage />
+                            <ErrorMessage condition={errors} message={errors?.title?.message} />
+                            <ErrorMessage condition={validateError} message={validateError?.provide}/>
                         </Label>
                     </Grid>
                     <Flex className="form-btn-mt">

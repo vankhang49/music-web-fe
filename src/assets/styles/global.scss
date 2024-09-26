@@ -3,6 +3,7 @@
     --bg-content-comment: rgba(62,41,73,0.88);
     --bg-content: #34214e;
     --color-text: #fff;
+    --color-text-secondary: #ccc;
 }
 
 .theme_3 {
@@ -10,13 +11,16 @@
     --bg-content-comment: rgba(59, 57, 87, 0.87);
     --bg-content: rgba(99, 102, 241, 0.3);
     --color-text: #fff;
+    --color-text-secondary: #ccc;
 }
 
 .theme_4 {
     --bg-comment: rgb(76 5 25);
     --bg-content-comment: rgb(71, 41, 49);
     --bg-content: rgba(244, 63, 94, 0.3);
+    --bg-content-hover: rgba(244, 63, 94, 0.55);
     --color-text: #fff;
+    --color-text-secondary: #ccc;
 }
 
 
@@ -107,20 +111,6 @@
             background-color: #2f2739;
         }
     }
-    .card-default {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: #e4e4e7;
-        }
-
-        p, time {
-            color: #a1a1aa;
-        }
-    }
 }
 .theme_1 {
     .active-class {
@@ -132,20 +122,6 @@
         padding: 8px;
         &:hover {
             background-color: #333;
-        }
-    }
-    .card-theme-1 {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: #e4e4e7;
-        }
-
-        p, time {
-            color: #a1a1aa;
         }
     }
     .search-home{
@@ -176,20 +152,6 @@
         padding: 8px;
         &:hover {
             background-color: #dcdcdc;
-        }
-    }
-    .card-theme-2 {
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            color: black;
-        }
-
-        p, time {
-            color: #8b8791;
         }
     }
     .search-home{

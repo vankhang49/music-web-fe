@@ -60,7 +60,8 @@ export const saveSong= async (song) => {
         return temp.data;
     } catch (e) {
         console.log(e)
-        throw new Error("Không thể thêm mới!")
+        throw e.response?.data;
+        
     }
 
 }

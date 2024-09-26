@@ -58,6 +58,8 @@ export function LineChart() {
     };
 
     const options = {
+        maintainAspectRatio: false,
+        responsive: true,
         scales: {
             y: {
                 display: false // Ẩn thanh Y

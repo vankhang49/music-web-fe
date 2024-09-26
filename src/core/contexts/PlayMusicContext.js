@@ -5,7 +5,7 @@ const PlayMusicContext = createContext();
 
 export const PlayMusicProvider = ({ children }) => {
     const [isPlayingSong, setIsPlayingSong] = useState(false);
-    const [playSongList, setPlaySongList] = useState(songsData);
+    const [playSongList, setPlaySongList] = useState([]);
     const [songIndexList, setSongIndexList] = useState(0);
     const audioRef = useRef();
 

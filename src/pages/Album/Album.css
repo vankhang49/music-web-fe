@@ -13,3 +13,12 @@
     }
 
 }
+
+@media screen and (max-width: 1100px) {
+    .album-card {
+        width: auto!important;
+    }
+    .album-song-list {
+        width: 100% !important;
+    }
+}

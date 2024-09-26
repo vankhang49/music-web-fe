@@ -1,5 +1,4 @@
 import axios from "axios";
-import {jwtDecode} from "jwt-decode";
 import axiosClient from "../../utils/axiosClient";
 import { toast } from "react-toastify";
 
@@ -53,8 +52,8 @@ export const updatePasswordUser = async (userData, token) => {
 /**AUTHENTICATION CHECKER */
 export const logout = async() => {
     try {
-        const userId = JSON.parse(localStorage.getItem("user")).userId;
-        await axiosClient.post(`logout?userId=${userId}`);
+        const userId = JSON.parse(localStorage.getItem("user")).userId || JSON.parse(localStorage.getItem("user")).uid ;
+        await axios.post(` http://localhost:8080/api/auth/logout?userId=${userId}`);
         localStorage.removeItem("user");
         window.location.href = "/login";
     } catch (e) {

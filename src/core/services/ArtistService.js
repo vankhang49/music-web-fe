@@ -26,12 +26,23 @@ export const getArtistById = async (artistId) => {
     }
 }
 
+export const getArtistByArtistName = async (artistName) => {
+    try {
+        const temp = await axios.get(`${BASE_URL}/api/public/artists/name/${artistName}`);
+        console.log(temp.data)
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return {};
+    }
+}
+
 export const saveArtist = async (artist) => {
     try {
         const temp = await axiosClient.post(`artists`, artist);
     } catch (e) {
         console.log(e)
-        throw new Error("Không thể thêm mới!");
+        throw e.response?.data;
     }
 }
 
@@ -40,6 +51,6 @@ export const updateArtist = async (artist) => {
         const temp = await axiosClient.put(`artists/${artist.artistId}`, artist);
     } catch (e) {
         console.log(e)
-        throw new Error("Không thể cập nhật!");
+        throw e.response?.data;
     }
 }

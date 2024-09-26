@@ -5,28 +5,38 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import {CiHome, CiSettings} from "react-icons/ci";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { MdMenuOpen } from "react-icons/md";
-import {useState} from "react";  
+import React, {useState} from "react";
 import {PlayMusicFooter} from "../components/Footer/PlayMusicFooter";
 import {usePlayMusic} from "../core/contexts/PlayMusicContext";
-import {LyricsPlay} from "../components/LyricsPlay/LyricsPlay";
 import { ModalUserAccess } from "../components/Modal/ModalUserAccess";
 import { navigationHomeItems1, navigationHomeItems2, navigationHomeItems3 } from "../data";
 import {LyricAndComment} from "../components/LyricAndComment/LyricAndComment";
 import { SidebarHomeMobile } from "../components/SideBar/SidebarHomeMobile";
-import {toast} from "react-toastify";
 import {PlayQueue} from "../components/Play-queue/PlayQueue";
+import ModalSearch from "../components/Modal/ModalSearch";
+import InputSearchHome from "../components/InputSearch/InputSearchHome";
+import ModalSongMenu from "../components/Modal/ModalSongMenu";
 
 function LayoutHome() {
     const [isShowPlayLyrics, setShowPlayLyrics] = useState(false);
     const [isShowQueues, setIsShowQueues] = useState(false);
-    const {playSongList,} = usePlayMusic();
+    const [isOpenSongMenu, setIsOpenSongMenu] = useState(false);
+    const [searchValue, setSearchValue] = useState('');
+    const {
+        playSongList,
+        songIndexList,
+    } = usePlayMusic();
     const isAuthenticated = !!localStorage.getItem("isAuthenticated");
     const avatar = localStorage.getItem("avatar");
     const { position: positionHeader, elementRef: elementRefHeader } = useElementPosition();
     const { position: positionSidebar, elementRef: elementRefSideBar } = useElementPosition();
     const { position: positionFooter, elementRef: elementRefFooter } = useElementPosition();
+
+    const [openModalSearch, setOpenModalSearch] = useState(false)
     const [openModalAvatar, setOpenModalAvatar] = useState(false)
     const [openModalMenuHome, setOpenModalMenuHome] = useState(false)
+
+    const [positionInputSearch, setPositionInputSearch] = useState({top: 0, left: 0, bottom: 0, right: 0});
 
     const navigate = useNavigate();
 
@@ -44,6 +54,19 @@ function LayoutHome() {
         setIsShowQueues(!isShowQueues);
     }
 
+    const handleChangeSearchValue = (value) =>{
+        setSearchValue(value);
+        setOpenModalSearch(!!value);
+    }
+
+    const handleOpenMenuSong = () => {
+        setIsOpenSongMenu(!isOpenSongMenu);
+    }
+
+    const handleCloseSongMenu = () => {
+        setIsOpenSongMenu(false);
+    }
+
     return (
         <Layout className={'layout-home'}>
             <Group className="flex h-full max-h-svh overlay" gd={{overflow:"hidden", height: '100vh'}}>
@@ -53,13 +76,19 @@ function LayoutHome() {
                         <Nav listNav={navigationHomeItems1} LinkComponent={Link} className="" activeClass="active-class" overflow={false} />
                         <Typography className="hr-top"></Typography>
                         <Nav listNav={navigationHomeItems2} LinkComponent={Link} className="" activeClass="active-class" />
+                        <RenderIf isTrue={[1, 2].includes(breakpoints)}>
+                            <Flex className=" items-center">
+
+                                <ThemeSwitcher />
+                            </Flex>
+                        </RenderIf>
                         <Nav listNav={navigationHomeItems3} LinkComponent={Link} className="" activeClass="active-class" gd={{ marginTop: "auto" }} overflow={false} />
                     </Sidebar>
                 </RenderIf>
                 <Group>
                     <Header ref={elementRefHeader} fixed className="backdrop-blur bg-opacity-80 md:px-4" gd={{ left: positionSidebar.right }} >
                         <Flex gap={3} justifyContent="between">
-                            <Flex gap={3} className="flex-1">
+                            <Flex gap={3} className="flex-1" gd={{position: "relative"}}>
                                 <RenderIf isTrue={[0, 1, 2].includes(breakpoints)}>
                                     <Button text="" theme="reset" icon={<MdMenuOpen size={24} color="gray" />} onClick={() => setOpenModalMenuHome(!openModalMenuHome)} />
                                 </RenderIf>
@@ -67,7 +96,10 @@ function LayoutHome() {
                                     <Button text="" theme="reset" icon={<FaArrowLeftLong color="gray" />} />
                                     <Button text="" theme="reset" icon={<FaArrowRightLong color="gray" />} />
                                 </RenderIf>
-                                <Input theme="search_2" className="search-home" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..." gd={{ maxWidth: "500px" }} />
+
+                                <InputSearchHome onValueChange={(value)=>handleChangeSearchValue(value)}
+                                                 onPositionChange={(position) => setPositionInputSearch(position)} />
+
                             </Flex>
                             <Flex gap={3}>
                                 <RenderIf isTrue={[4, 5, 6].includes(breakpoints)}>
@@ -83,21 +115,34 @@ function LayoutHome() {
                             </Flex>
                         </Flex>
                     </Header>
+
                     <Main withShadow={false} className="p-0 md:p-4" gd={{ marginTop: positionHeader.bottom, marginBottom: (positionFooter.bottom - positionFooter.top) }}>
                         <Outlet />
                     </Main>
                 </Group>
             </Group>
-            <Footer ref={elementRefFooter} className={cn("flex items-center backdrop-blur", playSongList.length < 1 && "hidden")}
+            <Footer ref={elementRefFooter} className={cn("flex items-center backdrop-blur !py-2", playSongList.length < 1 && "hidden")}
                     fixed gd={{ height: "78px" }}>
-                <PlayMusicFooter callPlayLyrics={handleShowPlayLyrics} callPlayList={handleShowPlayList} />
+                <PlayMusicFooter callPlayLyrics={handleShowPlayLyrics}
+                                 callPlayList={handleShowPlayList}
+                                 openMenuSongFooter={handleOpenMenuSong}
+                />
             </Footer>
             <LyricAndComment showLyrics={isShowPlayLyrics}></LyricAndComment>
             <PlayQueue showPlayList={isShowQueues}></PlayQueue>
+            <ModalSearch isOpen={openModalSearch} searchValue={searchValue}
+                         onClose={() => setOpenModalSearch(false) } position={positionInputSearch}/>
             <ModalUserAccess isOpen={openModalAvatar} onClose={() => setOpenModalAvatar(!openModalAvatar)} />
             <RenderIf isTrue={[0, 1, 2].includes(breakpoints)}>
                 <SidebarHomeMobile isOpen={openModalMenuHome} onClose={() => setOpenModalMenuHome(!openModalMenuHome)} />
             </RenderIf>
+            {playSongList.length > 0 &&
+                <ModalSongMenu
+                    isOpen={isOpenSongMenu}
+                    onClose={handleCloseSongMenu}
+                    song={playSongList[songIndexList]}
+                ></ModalSongMenu>
+            }
         </Layout>
     );
 }

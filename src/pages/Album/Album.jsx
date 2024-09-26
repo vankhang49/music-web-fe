@@ -5,6 +5,9 @@ import React, {useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import * as albumService from "../../core/services/AlbumService";
 import "./Album.css";
+import {albumsWantToListen} from "../../data/albumsWantToListen";
+import {sonTungAlbum} from "../../data/SonTungAlbum";
+import sontung from "../../assets/images/son-tung-mtp/sontung.jpg";
 
 export function Album(){
     const {
@@ -27,7 +30,24 @@ export function Album(){
 
     const getAlbumById = async (id) => {
         const temp = await albumService.getAlbumById(id);
-        setAlbum(temp);
+        if (temp !== null) {
+            setAlbum(temp);
+        } else {
+            const tempAlbum = {
+                    "albumId": 1,
+                    "title" : "Những Bài Hát Hay Nhất Của Sơn Tùng MTP",
+                    "artists" : [
+                        {
+                            "artistId" : 2,
+                            "artistName": "Sơn Tùng M-TP"
+                        }
+                    ],
+                    "coverImageUrl": sontung,
+                    "songs": sonTungAlbum,
+                };
+            setAlbum(tempAlbum);
+        }
+
     }
 
     // flag to prevent double calls
@@ -79,27 +99,34 @@ export function Album(){
 
     return(
         <Container withShadow={false} gd={{ overflow: "hidden" }}>
-            <Flex justifyContent="space-between" alignItems="flex-start" flexWrap="wrap">
-                <Group gd={{backgroundColor: 'transparent', textAlign: 'center', minWidth: '25%', maxWidth:'100%'}} >
-                    <Card srcImg={album.coverImageUrl}>
-                        <Typography tag={"h1"}>{album.title}</Typography>
-                        <Flex center>
-                            <Typography>Nghệ sĩ:</Typography>
-                            <Typography>
-                                {album.artists?.map((artist, index) => (
-                                    <a key={artist.artistId}>{artist.artistName}
-                                        {index !== album.artists.length - 1 && <span>, </span>}
-                                    </a>
-                                ))}
-                            </Typography>
-                        </Flex>
-                        <Typography>1 người yêu thích</Typography>
-                        <Flex center>
-                            <Button onClick={handlePlayAlbum} text={'Phát ngẫu nhiên'}></Button>
-                        </Flex>
+            <Flex justifyContent="space-between" alignItems="flex-start" flexWrap={'wrap'} >
+                <Group className={'album-card'}
+                    gd={{backgroundColor: 'transparent', textAlign: 'center', minWidth: '25%', maxWidth:'100%', width: '25%'}} >
+                    <Card srcImg={album.coverImageUrl}
+                          children={
+                            <Group>
+                                <Typography tag={"h1"}>{album.title}</Typography>
+                                <Flex center>
+                                    <Typography>Nghệ sĩ:</Typography>
+                                    <Typography>
+                                        {album.artists?.map((artist, index) => (
+                                            <a key={artist.artistId}>{artist.artistName}
+                                                {index !== album.artists.length - 1 && <span>, </span>}
+                                            </a>
+                                        ))}
+                                    </Typography>
+                                </Flex>
+                                <Typography>1 người yêu thích</Typography>
+                                <Flex center>
+                                    <Button onClick={handlePlayAlbum} text={'Phát ngẫu nhiên'}></Button>
+                                </Flex>
+                            </Group>
+                          }
+                    >
                     </Card>
                 </Group>
-                <Group gd={{backgroundColor: 'transparent', minWidth: '74%', maxWidth:'100%'}}>
+                <Group className={'album-song-list'}
+                    gd={{backgroundColor: 'transparent', minWidth: '74%', maxWidth:'100%', width: '74%'}}>
                     {album.songs && <Table border={false} columns={columns} data={album.songs} rowKey={"id"}
                                            className="custom-table" onClickRow={(index) => handlePlaySong(index)}
                     />}
@@ -109,7 +136,11 @@ export function Album(){
                 <Typography tag={"h2"}>Nghệ sĩ tham gia</Typography>
                 <Grid columns={2} xs={2} sm={3} md={3} lg={5}>
                     {album.artists && album.artists.map(artist => (
-                        <Card key={artist} shape="circle" srcImg={artist.avatar} alt={artist.artistName} title={artist.artistName} description="55tr lượt xem" />
+                        <Card key={artist} shape="circle" srcImg={artist.avatar}
+                              urlLink={`/artists/${artist.artistName}`}
+                              LinkComponent={Link}
+                              alt={artist.artistName} title={artist.artistName}
+                              description="55tr lượt xem" />
                     ))}
                 </Grid>
             </Group>

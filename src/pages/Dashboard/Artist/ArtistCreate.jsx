@@ -110,6 +110,19 @@ export function ArtistCreate(){
         data.songs = addSongs;
         data.albums = addAlbums;
         console.log(data);
+
+        let flag = false;
+        if (addGenres.length < 1) {
+            flag = true;
+            setValidateError({genres: "Thể loại không được để trống!"});
+        }
+        if (avatar === null) {
+            flag = true;
+            setValidateError({avatar: "Ảnh đại diện không được để trống!"})
+        }
+        if (flag === true) {
+            return ;
+        }
         try {
             if (id !== undefined) {
                 await artistService.updateArtist(data);
@@ -118,6 +131,8 @@ export function ArtistCreate(){
             }
             toast.success("Thêm mới nghệ sĩ thành công!");
         } catch (e) {
+            setValidateError(e.errorMessage);
+            if(validateError) return toast.warn("Kiểm tra lại việc nhập!");
             toast.error("Thêm mới thất bại!");
         }
     }
@@ -187,7 +202,8 @@ export function ArtistCreate(){
                                        required: "Không được để trống!"
                                    })}
                             />
-                            <ErrorMessage />
+                            <ErrorMessage condition={errors} message={errors?.artistName?.message} />
+                            <ErrorMessage condition={validateError} message={validateError?.artistName}/>
                         </Label>
                         <Label>
                             <Typography>Thể loại</Typography>
@@ -199,8 +215,8 @@ export function ArtistCreate(){
                                                 value={JSON.stringify(genre)} text={genre.genreName}></Option>
                                     ))}
                                 </Select>
-                                <ErrorMessage />
                             </Flex>
+                            <ErrorMessage condition={validateError} message={validateError?.genres}/>
                             <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>
                                 {addGenres && addGenres.map((genre, index) => (
                                     <Flex justifyContent="start" alignItems="center" key={genre.genreId}
@@ -236,8 +252,8 @@ export function ArtistCreate(){
                             <Flex>
                                 <UploadOneImage className='form-label-child'
                                                 onImageUrlChange={(url) => handleOneImageUrlChange(url)}/>
-                                <ErrorMessage />
                             </Flex>
+                            <ErrorMessage condition={validateError} message={validateError?.avatar}/>
                             <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>
                                 {avatar &&
                                     <Flex justifyContent="start" alignItems="center"
@@ -277,8 +293,8 @@ export function ArtistCreate(){
                                                 text={song.title}></Option>
                                     ))}
                                 </Select>
-                                <ErrorMessage />
                             </Flex>
+                            <ErrorMessage condition={validateError} message={validateError?.songs}/>
                             <div>
                                 {addSongs && addSongs.map((song, index) => (
                                     <>
@@ -318,16 +334,18 @@ export function ArtistCreate(){
                                     <Option key={album.albumId} value={JSON.stringify(album)}
                                             text={album.title}></Option>
                                 ))}
-                            </Select>
-                            <ErrorMessage />
+                            </Select>>
                             </Flex>
+                            <ErrorMessage condition={validateError} message={validateError?.albums}/>
                             <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>
                                 {addAlbums && addAlbums.map((album, index) => (
                                     <Flex justifyContent="start" alignItems="center" key={album.albumId}
                                           gd={{
                                               position: "relative",
-                                              width: 150,
-                                              height: 40,
+                                              minWidth: 150,
+                                              maxWidth: 200,
+                                              minHeight: 40,
+                                              maxHeight: 100,
                                               borderRadius: 10,
                                               border: "1px solid #9b4de0",
                                               padding: 5,
@@ -354,7 +372,7 @@ export function ArtistCreate(){
                         <Label>
                             <Typography>Tiểu sử </Typography>
                             <Editor value={biography} onChange={handleChangeBiography}/>
-                            <ErrorMessage />
+                            <ErrorMessage condition={validateError} message={validateError?.biography}/>
                         </Label>
                     </Grid>
                     <Flex className="form-btn-mt">

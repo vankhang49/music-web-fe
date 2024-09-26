@@ -1,13 +1,14 @@
 import { AudioPlayer, AudioToolbar, Button, Card, Flex, Grid, Group, Input, RenderIf, Typography, useResponsive } from "lvq";
 import { CiHeart, CiMenuKebab } from "react-icons/ci";
 import { usePlayMusic } from "../../core/contexts/PlayMusicContext";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {IoPause, IoPlaySkipForwardSharp} from "react-icons/io5";
 import {IoMdPlay} from "react-icons/io";
 import * as songService from "../../core/services/SongService";
+import ModalSongMenu from "../Modal/ModalSongMenu";
 
 
-export function PlayMusicFooter({ callPlayLyrics, callPlayList }) {
+export function PlayMusicFooter({ callPlayLyrics, callPlayList, openMenuSongFooter }) {
     const audioPlayerRef = useRef(null);
     const [hasReachedHalf, setHasReachedHalf] = useState(false);  // Đánh dấu xem đã đạt đến một nửa thời gian phát thực tế chưa
     const [playTime, setPlayTime] = useState(0);  // Bộ đếm thời gian phát thực tế
@@ -77,8 +78,7 @@ export function PlayMusicFooter({ callPlayLyrics, callPlayList }) {
     const audioPlayerState = JSON.parse(localStorage.getItem("audioPlayerState"));
     const [isRandom, setIsRandom] = useState(audioPlayerState !== null ? audioPlayerState.random : false);
     const [loopSong, setLoopSong] = useState(audioPlayerState !== null ? audioPlayerState.loop : 0);
-
-
+    const [isOpenSongMenu, setIsOpenSongMenu] = useState(false);
 
     const handleChangeSong = (value) => {
         if (value === -1) {
@@ -163,9 +163,13 @@ export function PlayMusicFooter({ callPlayLyrics, callPlayList }) {
         isPlayingSong ? toggleIsPlayingSong(false) : toggleIsPlayingSong(true);
     }
 
+    const openSongMenu = () => {
+        openMenuSongFooter(true);
+    }
+
     return (
         <Grid columns={1} md={2} lg={3} gap={4} alignItems="center" className="w-full h-full c-m-0">
-            <Card className="" srcImg={playSongList[songIndexList].coverImageUrl}
+            <Card className="" srcImg={playSongList[songIndexList]?.coverImageUrl}
                 title={playSongList[songIndexList]?.title}
                 long description={
                     playSongList[songIndexList]?.artists.map((artist, index) => (
@@ -208,7 +212,13 @@ export function PlayMusicFooter({ callPlayLyrics, callPlayList }) {
                                 }}
                         />
                         :
-                        <Button theme="reset" text="" icon={<CiMenuKebab size={22} />} />
+                        <Button theme="reset" text="" icon={<CiMenuKebab size={22} />}
+                                id={`active-song-menu-${playSongList[songIndexList]?.songId}`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    openSongMenu()
+                                }}
+                        />
                 }
             </Card>
             <RenderIf isTrue={[3, 4, 5, 6].includes(breakpoints)} hiddenCSS>

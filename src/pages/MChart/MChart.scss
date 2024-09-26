@@ -8,13 +8,13 @@
     }
 
     .M-Chart{
-        height: calc(100% - 120px);
+        min-height: 400px;
         max-height: 500px;
         display: flex;
         background: rgba(60, 59, 59, 0.15);
-        canvas{
-            flex: 1;
-        }
+        //canvas{
+        //    flex: 1;
+        //}
     }
 
     .top-100 {

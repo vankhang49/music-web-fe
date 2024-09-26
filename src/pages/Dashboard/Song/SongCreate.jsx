@@ -155,6 +155,8 @@ function SongCreate() {
             }
             toast.success("Thêm mới bài hát thành công!");
         } catch (e) {
+            setValidateError(e.errorMessage);
+            if(validateError) return toast.warn("Kiểm tra lại việc nhập!");
             toast.error("Thêm mới thất bại!");
         }
     }
@@ -191,10 +193,10 @@ function SongCreate() {
                                 <Typography>Tên bài hát</Typography>
                                 <Input size={4} placeholder="Tên bài hát"
                                        {...register("title", {
-                                           required: "Không được để trống!"
+                                        //    required: "Không được để trống!"
                                        })}
                                 />
-                                <ErrorMessage />
+                                <ErrorMessage condition={validateError} message={validateError?.title}/>
                             </Label>
                             <Label>
                                 <Typography>Nghệ sĩ thực hiện</Typography>
@@ -242,8 +244,8 @@ function SongCreate() {
                                 <Flex>
                                     <UploadOneImage className='form-label-child'
                                                     onImageUrlChange={(url) => handleOneImageUrlChange(url)}/>
-                                    <ErrorMessage />
                                 </Flex>
+                                <ErrorMessage condition={validateError} message={validateError?.coverImageUrl}/>
                                 <Flex justifyContent={'space-between'} alignItems="center" flexWrap="wrap">
                                     {coverImageUrl &&
                                         <Flex justifyContent="start" alignItems="center"
@@ -320,8 +322,8 @@ function SongCreate() {
                                 <Flex>
                                     <UploadMp3 className='form-label-child'
                                                onMp3UrlChange={(url) => handleOneMp3UrlChange(url)}/>
-                                    <ErrorMessage />
                                 </Flex>
+                                <ErrorMessage condition={validateError} message={validateError?.songUrl}/>
                                 <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>
                                     {mp3Url &&
                                         <Flex justifyContent="start" alignItems="center" key={genre.genreId}
@@ -353,7 +355,7 @@ function SongCreate() {
                                 <Typography>Thời lượng</Typography>
                                 <Input size={4} placeholder="Thời lượng bài hát" type="number"
                                        {...register("duration", {
-                                           required: "Không được để trống!"
+                                        //    required: "Không được để trống!"
                                        })}
                                 />
                                 <ErrorMessage />
