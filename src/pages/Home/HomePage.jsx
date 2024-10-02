@@ -60,6 +60,7 @@ function HomePage() {
     const [suggestedSongs, setSuggestedSongs] = useState([]);
     const [modalSongIndex, setModalSongIndex] = useState(0);
     const [isOpenSongMenu, setIsOpenSongMenu] = useState(false);
+    const [useStaticData, setUseStaticData] = useState(false);
 
     useEffect(() => {
         const fetchAlbums = async () => {
@@ -67,25 +68,39 @@ function HomePage() {
             await getAllSongSuggested();
         }
         fetchAlbums().then().catch(console.error);
+
+        const timeout = setTimeout(() => {
+            setUseStaticData(true); // Switch to static data
+        }, 60000);
+
+        // Clean up the timeout when component unmounts
+        return () => clearTimeout(timeout);
     }, [])
 
     const getAllAlbumsFromService = async () => {
-        const temp = await albumsService.getAllSuggestedAlbums();
-        if (temp.length > 0) {
-            setAlbums(temp);
+        if (!useStaticData) {
+            const temp = await albumsService.getAllSuggestedAlbums();
+            if (temp.length > 0) {
+                setAlbums(temp);
+            } else {
+                setAlbums(albumsWantToListen); // Fallback to static data
+            }
         } else {
-            setAlbums(albumsWantToListen);
+            setAlbums(albumsWantToListen); // Use static data
         }
     }
 
     const getAllSongSuggested = async () => {
-        const temp = await songService.getAllSuggestedSongs();
-        if (temp.length > 0) {
-            setSuggestedSongs(temp);
+        if (!useStaticData) {
+            const temp = await songService.getAllSuggestedSongs();
+            if (temp.length > 0) {
+                setSuggestedSongs(temp);
+            } else {
+                setSuggestedSongs(songSuggestions); // Fallback to static data
+            }
         } else {
-            setSuggestedSongs(songSuggestions);
+            setSuggestedSongs(songSuggestions); // Use static data
         }
-
     }
 
     const handlePlaySong = (index) => {
