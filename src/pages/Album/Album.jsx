@@ -8,6 +8,7 @@ import "./Album.css";
 import {albumsWantToListen} from "../../data/albumsWantToListen";
 import {sonTungAlbum} from "../../data/SonTungAlbum";
 import sontung from "../../assets/images/son-tung-mtp/sontung.jpg";
+import {songSuggestions} from "../../data/songSuggestions";
 
 export function Album() {
     const {
@@ -22,55 +23,61 @@ export function Album() {
     const [album, setAlbum] = useState({});
     const [useStaticData, setUseStaticData] = useState(false);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await getAlbumById(id);
-        }
-        fetchData();
-        const timeout = setTimeout(() => {
-            setUseStaticData(true); // Switch to static data
-        }, 60000);
+    const tempAlbum = {
+        "albumId": 1,
+        "title": "Những Bài Hát Hay Nhất Của Sơn Tùng MTP",
+        "artists": [
+            {
+                "artistId": 2,
+                "artistName": "Sơn Tùng M-TP"
+            }
+        ],
+        "coverImageUrl": sontung,
+        "songs": sonTungAlbum,
+    };
 
-        // Clean up the timeout when component unmounts
-        return () => clearTimeout(timeout);
+    useEffect(() => {
+        let timeoutId;
+
+        const fetchData = async () => {
+            try {
+                // Tạo promise cho việc gọi API với thời gian chờ tối đa 60 giây
+                const apiPromise = (async () => {
+                    await getAlbumById();
+                })();
+
+                // Tạo promise timeout sau 60 giây
+                const timeoutPromise = new Promise((resolve) => {
+                    timeoutId = setTimeout(() => {
+                        resolve("timeout");
+                    }, 60000); // 60 giây
+                });
+
+                // Dùng Promise.race để đua giữa API và timeout
+                const result = await Promise.race([apiPromise, timeoutPromise]);
+
+                // Nếu hết thời gian và không nhận được phản hồi từ API
+                if (result === "timeout") {
+                    setAlbum(tempAlbum);
+                }
+            } catch (error) {
+                setAlbum(tempAlbum);
+            }
+        };
+
+        fetchData();
+
+        // Xóa timeout nếu component unmount
+        return () => clearTimeout(timeoutId);
     }, [id]);
 
     const getAlbumById = async (id) => {
-        if (!useStaticData) {
-            const temp = await albumService.getAlbumById(id);
-            if (temp !== null) {
-                setAlbum(temp);
-            } else {
-                const tempAlbum = {
-                    "albumId": 1,
-                    "title": "Những Bài Hát Hay Nhất Của Sơn Tùng MTP",
-                    "artists": [
-                        {
-                            "artistId": 2,
-                            "artistName": "Sơn Tùng M-TP"
-                        }
-                    ],
-                    "coverImageUrl": sontung,
-                    "songs": sonTungAlbum,
-                };
-                setAlbum(tempAlbum);
-            }
+        const temp = await albumService.getAlbumById(id);
+        if (temp !== null) {
+            setAlbum(temp);
         } else {
-            const tempAlbum = {
-                "albumId": 1,
-                "title": "Những Bài Hát Hay Nhất Của Sơn Tùng MTP",
-                "artists": [
-                    {
-                        "artistId": 2,
-                        "artistName": "Sơn Tùng M-TP"
-                    }
-                ],
-                "coverImageUrl": sontung,
-                "songs": sonTungAlbum,
-            };
             setAlbum(tempAlbum);
         }
-
     }
 
     // flag to prevent double calls

@@ -60,47 +60,64 @@ function HomePage() {
     const [suggestedSongs, setSuggestedSongs] = useState([]);
     const [modalSongIndex, setModalSongIndex] = useState(0);
     const [isOpenSongMenu, setIsOpenSongMenu] = useState(false);
-    const [useStaticData, setUseStaticData] = useState(false);
 
     useEffect(() => {
-        const fetchAlbums = async () => {
-            await getAllAlbumsFromService();
-            await getAllSongSuggested();
-        }
-        fetchAlbums().then().catch(console.error);
+        let timeoutId;
 
-        const timeout = setTimeout(() => {
-            setUseStaticData(true); // Switch to static data
-        }, 60000);
+        const fetchData = async () => {
+            try {
+                // Tạo promise cho việc gọi API với thời gian chờ tối đa 60 giây
+                const apiPromise = (async () => {
+                    await getAllAlbumsFromService();
+                    await getAllSongSuggested();
+                })();
 
-        // Clean up the timeout when component unmounts
-        return () => clearTimeout(timeout);
+                // Tạo promise timeout sau 60 giây
+                const timeoutPromise = new Promise((resolve) => {
+                    timeoutId = setTimeout(() => {
+                        resolve("timeout");
+                    }, 60000); // 60 giây
+                });
+
+                // Dùng Promise.race để đua giữa API và timeout
+                const result = await Promise.race([apiPromise, timeoutPromise]);
+
+                // Nếu hết thời gian và không nhận được phản hồi từ API
+                if (result === "timeout") {
+                    // Đặt lại albums và suggested songs với giá trị mặc định
+                    setAlbums(albumsWantToListen);
+                    setSuggestedSongs(songSuggestions);
+                }
+            } catch (error) {
+                console.error("Lỗi khi gọi API:", error);
+                // Đặt lại giá trị nếu có lỗi
+                setAlbums(albumsWantToListen);
+                setSuggestedSongs(songSuggestions);
+            }
+        };
+
+        fetchData();
+
+        // Xóa timeout nếu component unmount
+        return () => clearTimeout(timeoutId);
     }, [])
 
     const getAllAlbumsFromService = async () => {
-        if (!useStaticData) {
             const temp = await albumsService.getAllSuggestedAlbums();
             if (temp.length > 0) {
                 setAlbums(temp);
             } else {
                 setAlbums(albumsWantToListen); // Fallback to static data
             }
-        } else {
-            setAlbums(albumsWantToListen); // Use static data
-        }
     }
 
     const getAllSongSuggested = async () => {
-        if (!useStaticData) {
             const temp = await songService.getAllSuggestedSongs();
             if (temp.length > 0) {
                 setSuggestedSongs(temp);
             } else {
                 setSuggestedSongs(songSuggestions); // Fallback to static data
             }
-        } else {
-            setSuggestedSongs(songSuggestions); // Use static data
-        }
     }
 
     const handlePlaySong = (index) => {
