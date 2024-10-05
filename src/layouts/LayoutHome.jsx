@@ -16,6 +16,7 @@ import {PlayQueue} from "../components/Play-queue/PlayQueue";
 import ModalSearch from "../components/Modal/ModalSearch";
 import InputSearchHome from "../components/InputSearch/InputSearchHome";
 import ModalSongMenu from "../components/Modal/ModalSongMenu";
+import funny from "../assets/gif/looping-infinite-loop.gif";
 
 function LayoutHome() {
     const [isShowPlayLyrics, setShowPlayLyrics] = useState(false);
@@ -25,6 +26,7 @@ function LayoutHome() {
     const {
         playSongList,
         songIndexList,
+        isPlayingSong,
     } = usePlayMusic();
     const isAuthenticated = !!localStorage.getItem("isAuthenticated");
     const avatar = localStorage.getItem("avatar");
@@ -121,6 +123,11 @@ function LayoutHome() {
                     </Main>
                 </Group>
             </Group>
+            { isPlayingSong === true &&
+                <Group gd={{position:'absolute', bottom:78, right: 50, width: 100}}>
+                    <img src={funny} alt="funny" width="100%"/>
+                </Group>
+            }
             <Footer ref={elementRefFooter} className={cn("flex items-center backdrop-blur !py-2", playSongList.length < 1 && "hidden")}
                     fixed gd={{ height: "78px" }}>
                 <PlayMusicFooter callPlayLyrics={handleShowPlayLyrics}
