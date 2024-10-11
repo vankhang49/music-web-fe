@@ -5,12 +5,11 @@ import "./commentBox.css";
 import * as commentService from "../../core/services/CommentService";
 import {usePlayMusic} from "../../core/contexts/PlayMusicContext";
 import {useForm} from "react-hook-form";
-import {toast} from "react-toastify";
 import {ReplyComponent} from "./ReplyComponent";
 import {over} from 'stompjs';
 import {Stomp} from "@stomp/stompjs";
 import SockJS from 'sockjs-client';
-import { BiSolidDislike } from "react-icons/bi";
+import {usePopUp} from "../../core/contexts/PopUpContext";
 import haha from "../../assets/gif/haha.gif";
 import love from "../../assets/gif/love.gif";
 import wow from "../../assets/gif/wow.gif";
@@ -19,15 +18,13 @@ import like from "../../assets/gif/like.gif";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 export function CommentBox({openComment, callOpenComment}) {
     const {
         playSongList,
         songIndexList,
     } = usePlayMusic();
-    const userId = user?.userId || 0;
-    console.log(userId)
+    const userId = JSON.parse(localStorage.getItem("user"))?.userId || 0;
+    const showPopup = usePopUp();
     const [isOpenComment, setIsOpenComment] = useState(false);
     const [numberElement, setNumberElement] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
@@ -59,7 +56,6 @@ export function CommentBox({openComment, callOpenComment}) {
         const stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe("/topic/comment", async (message) => {
-                    console.log("useEffect ở load comment đang hoaạt động")
                     if (songId !== undefined) {
                         const fetchData = async () => {
                             await getAllCommentBySong(songId, size)
@@ -82,7 +78,7 @@ export function CommentBox({openComment, callOpenComment}) {
         const stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe("/topic/createComment", async (message) => {
-                    toast.dark("Vừa có bình luận mới!", {autoClose: 500})
+                showPopup("Vừa có bình luận mới!", '', '5000');
                 console.log(message)
                     if (songId !== undefined) {
                         const fetchData = async () => {
@@ -129,13 +125,12 @@ export function CommentBox({openComment, callOpenComment}) {
             const stompClient = over(socket);
             stompClient.connect({}, () => {
                 stompClient.send(urlSocketRef.current, {}, JSON.stringify(newComment));
-                console.log("urlSocket ở create: ", urlSocketRef.current)
             });
-            toast.dark("Đăng tải thành công!");
+            showPopup("Đăng tải thành công!", '', '5000');
             await getAllCommentBySong(songId, size);
             resetComment();
         } catch (error) {
-            toast.error("Thất bại!");
+            showPopup("Thất bại!", 'error' , '5000');
         }
         newComment.content = '';
         newComment.song = null;
@@ -155,15 +150,14 @@ export function CommentBox({openComment, callOpenComment}) {
             const stompClient = over(socket);
             stompClient.connect({}, () => {
                 stompClient.send(urlSocketRef.current, {}, JSON.stringify(newReply));
-                console.log("urlSocket ở create: ", urlSocketRef.current)
             });
-            toast.dark("Đăng tải thành công!");
+            showPopup("Đăng tải thành công!", '', '5000');
             await getAllCommentBySong(songId, size);
             resetReply();
             setIsReply(false); // Reset trạng thái reply
             setCommentId(null); // Xóa commentId
         } catch (error) {
-            toast.error("Thất bại!");
+            showPopup("Thất bại!", 'error' , '5000');
         }
         newReply.content = '';
         newReply.parentComment = null;
@@ -177,7 +171,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            toast.error("fail")
+            showPopup("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -189,7 +183,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            toast.error("fail")
+            showPopup("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -201,7 +195,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            toast.error("fail")
+            showPopup("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -213,7 +207,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            toast.error("fail")
+            showPopup("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -225,7 +219,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            toast.error("fail")
+            showPopup("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -234,7 +228,7 @@ export function CommentBox({openComment, callOpenComment}) {
             await commentService.removeEmotionComment(commentId);
             await getAllCommentBySong(songId, size);
         } catch (error) {
-            toast.error("fail")
+            showPopup("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -345,7 +339,7 @@ export function CommentBox({openComment, callOpenComment}) {
                                             <Typography tag={'p'}
                                                         gd={{fontSize: '0.7rem'}}>{timeAgo(comment.createdAt)}</Typography>
                                         </Flex>
-                                        <Typography tag={'p'} gd={{fontSize: '.8rem', color: '#ccc'}}
+                                        <Typography tag={'p'} gd={{fontSize: '.8rem'}}
                                         >{comment.content}</Typography>
                                         <Flex justifyContent={'start'} gd={{width: "100%", position: 'relative'}}
                                               alignItems={"center"}>

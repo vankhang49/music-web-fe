@@ -1,34 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, Flex, Group, Input, Pagination, Table, Typography } from 'lvq';
+import {Button, Container, Flex, Form, Group, Input, Pagination, Table, Typography} from 'lvq';
 import { CiEdit } from "react-icons/ci";
 import { MdDelete } from "react-icons/md";
 import * as songService from "../../../core/services/SongService";
+import {useForm} from "react-hook-form";
 
 function SongList() {
 
     const navigate = useNavigate();
     const [songs, setSongs] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 100; // Tổng số trang
+    const [totalPages, setTotalPages] = useState(null);
+    const [contentSearch, setContentSearch] = useState("");
+    const {register, handleSubmit, formState: {errors}, setValue, control} = useForm({
+
+    });
 
     useEffect(() => {
 
         const fetchProducts = async () => {
-            await getSongsList();
+            await getSongsList(contentSearch, currentPage);
         }
         fetchProducts().then().catch(console.error);
-    }, []);
+    }, [contentSearch, currentPage]);
 
-    const getSongsList = async () => {
-        const temp = await songService.getAllSongs();
-        setSongs(temp);
+    const getSongsList = async (contentSearch, currentPage) => {
+        const temp = await songService.getAllSongsWithPage(contentSearch, currentPage);
+        setSongs(temp.content);
+        setTotalPages(temp.totalPages);
     }
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
-        console.log(`Đã chọn trang: ${page}`); // Xử lý số trang được chọn (ví dụ: log ra console)
     };
+
+    const onSubmit = (data) => {
+        setContentSearch(data.contentSearch);
+    }
+
 
     const columns = [
         {
@@ -75,10 +85,11 @@ function SongList() {
                 <Button text='Thêm mới' onClick={() => navigate("/dashboard/song-create")} />
             </Flex>
             <Group className=''>
-                <Flex>
-                    <Input type="text" gd={{ maxWidth: "400px" }} placeholder='Tìm kiếm bài hát ...' />
-                    <Button text='Tìm kiếm' />
-                </Flex>
+                <Form className={'bg-transparent'} onSubmit={handleSubmit(onSubmit)} >
+                    <Input type="text" gd={{ maxWidth: "400px" }} {...register("contentSearch")}
+                           placeholder='Tìm kiếm bài hát ...' />
+                    <Button type={"submit"} text='Tìm kiếm' gd={{display: "none"}}/>
+                </Form>
                 <Table border={false} columns={columns} data={songs} rowKey={"id"} gd={{ borderRadius: '10px' }} />
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </Group>

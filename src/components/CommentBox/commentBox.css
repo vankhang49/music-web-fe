@@ -17,6 +17,9 @@
         height: 80%;
         padding: 10px;
     }
+    h3,p,span {
+        color: var(--color-text)!important;
+    }
 }
 
 .comment.active-comment {

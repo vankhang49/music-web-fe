@@ -11,9 +11,6 @@ export function LyricAndComment({showLyrics}) {
     const {
         playSongList,
         songIndexList,
-        isPlayingSong,
-        audioRef,
-        toggleIsPlayingSong,
         changeSongIndex
     } = usePlayMusic();
     const [isShowLyrics, setIsShowLyrics] = useState(showLyrics);

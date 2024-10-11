@@ -55,7 +55,7 @@ export const logout = async() => {
         const userId = JSON.parse(localStorage.getItem("user")).userId || JSON.parse(localStorage.getItem("user")).uid ;
         await axios.post(` http://localhost:8080/api/auth/logout?userId=${userId}`);
         localStorage.removeItem("user");
-        window.location.href = "/login";
+        window.location.href = "/";
     } catch (e) {
         throw e;
     }

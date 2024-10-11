@@ -12,11 +12,13 @@ import LoginPage from "./pages/Login/LoginPage";
 import {LoginForm} from "./pages/Login/LoginForm";
 import {RegisterForm} from "./pages/Login/RegisterForm";
 import {AuthProvider} from "./firebase";
+import {PopUpProvider} from "./core/contexts/PopUpContext";
+
 AOS.init();
 
 function App() {
     return (
-
+        <PopUpProvider>
             <PlayMusicProvider>
                 <Router>
                     <Routes>
@@ -67,7 +69,7 @@ function App() {
                     </Routes>
                 </Router>
             </PlayMusicProvider>
-
+        </PopUpProvider>
     );
 }
 

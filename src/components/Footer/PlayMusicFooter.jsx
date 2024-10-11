@@ -170,7 +170,7 @@ export function PlayMusicFooter({ callPlayLyrics, callPlayList, openMenuSongFoot
     return (
         <Grid columns={1} md={2} lg={3} gap={4} alignItems="center" className="w-full h-full c-m-0">
             <Card className="" srcImg={playSongList[songIndexList]?.coverImageUrl}
-                title={playSongList[songIndexList]?.title}
+                  title={playSongList[songIndexList]?.title.length > 15 ? `${playSongList[songIndexList]?.title.substring(0, 15)}...` : playSongList[songIndexList]?.title}
                 long description={
                     playSongList[songIndexList]?.artists.map((artist, index) => (
                         <Typography tag={"span"} gd={{ fontSize: '.8rem' }} key={artist.artistId}>

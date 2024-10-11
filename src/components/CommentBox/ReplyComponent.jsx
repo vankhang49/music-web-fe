@@ -40,10 +40,10 @@ export function ReplyComponent(
                 <Avatar size={30} src={comment.user.avatar}></Avatar>
                 <Group gap={10} gd={{width: '80%', lineHeight: 0.6}}>
                     <Flex>
-                        <Typography tag={'p'} gd={{fontSize: '0.8rem', color: '#ccc'}}>{comment.user.fullName}</Typography>
-                        <Typography tag={'p'} gd={{fontSize: '0.6rem', color: '#ccc'}}>{timeAgo(comment.createdAt)}</Typography>
+                        <Typography tag={'p'} gd={{fontSize: '0.8rem'}}>{comment.user.fullName}</Typography>
+                        <Typography tag={'p'} gd={{fontSize: '0.6rem'}}>{timeAgo(comment.createdAt)}</Typography>
                     </Flex>
-                    <Typography tag={'p'} gd={{fontSize: '.7rem', color: '#ccc'}}>{comment.content}</Typography>
+                    <Typography tag={'p'} gd={{fontSize: '.7rem'}}>{comment.content}</Typography>
                     <Flex justifyContent={'start'} alignItems={"center"}>
                         <Flex className={'select-emotion'} gd={{width: "35%"}}>
                             <Button theme="reset" text={

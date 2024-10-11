@@ -51,7 +51,7 @@ function AlbumsList() {
             header: 'Nghệ sĩ thực hiện',
             render: (row) => row.artists.map(artist => (
                 <Link to={"/dashboard/albums"} key={artist.artistId}
-                style={{color: "#ec1ea4"}}>{artist.artistName}, </Link>
+                      style={{color: "#ec1ea4"}}>{artist.artistName}, </Link>
             )),
         },
         {

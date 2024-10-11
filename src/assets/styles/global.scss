@@ -1,9 +1,10 @@
 :root {
-    --bg-comment: #34214e;
-    --bg-content-comment: rgba(62,41,73,0.88);
-    --bg-content: #34214e;
-    --color-text: #fff;
-    --color-text-secondary: #ccc;
+    --bg-comment: rgba(255, 255, 255, 0.7);
+    --bg-content-comment: rgb(191, 191, 191);
+    --bg-content: rgba(255, 255, 255, 0.29);
+    --bg-content-hover: #c6edff99;
+    --color-text: #000;
+    --color-text-secondary: #3a3a3a;
 }
 
 .theme_3 {
@@ -49,23 +50,6 @@
         }
     }
 }
-.Toastify__toast-theme--dark::before {
-    content: '';
-    background: url("../../assets/images/logo2.png") center center no-repeat;
-    background-size: contain;
-    width: 40px;
-    height: 40px;
-}
-.Toastify__toast-theme--dark {
-    background: linear-gradient(
-                    to right,
-                    #510e73,
-                    #87105e,
-                    #693bdc,
-                    #4e55a6
-    )!important;
-
-}
 
 
 //---- Reset lại cho thư viện Slick --------------------------------
@@ -100,9 +84,9 @@
 // ------- Thiết lập các class bổ trợ cho theme  ----------------
 .default {
     .active-class {
-        background-color: #393243;
-        color: white;
-        box-shadow: inset 6px 0 #9b4de0;
+        background-color: #bcdfdf;
+        color: black;
+        box-shadow: inset 6px 0 #249aed;
     }
     .card-default.hover-card {
         padding: 8px;
@@ -110,6 +94,41 @@
         &:hover {
             background-color: #2f2739;
         }
+    }
+
+    .card-default {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: white;
+        }
+
+        p, time {
+            color: #8b8791;
+        }
+    }
+
+    .layout-home {
+        background: url("../../assets/images/taylor swift.jpg") center center no-repeat;
+        background-size: cover;
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.29);
+        }
+    }
+
+    .logo-app {
+        background: transparent;
+        img {
+            background: transparent;
+        }
+    }
+
+    .setting-home{
+        background-color: #bcc9ce80;
     }
 }
 .theme_1 {

@@ -43,7 +43,7 @@ export function Album() {
             try {
                 // Tạo promise cho việc gọi API với thời gian chờ tối đa 60 giây
                 const apiPromise = (async () => {
-                    await getAlbumById();
+                    await getAlbumById(id);
                 })();
 
                 // Tạo promise timeout sau 60 giây

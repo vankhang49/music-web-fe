@@ -328,13 +328,13 @@ export function ArtistCreate(){
                         <Label>
                             <Typography>Album</Typography>
                             <Flex>
-                            <Select size={4} onChange={(e) => handleAddAlbums(e)}>
-                                <Option value="" text="-- Chọn Album --"></Option>
-                                {albums && albums.map((album) => (
-                                    <Option key={album.albumId} value={JSON.stringify(album)}
-                                            text={album.title}></Option>
-                                ))}
-                            </Select>>
+                                <Select size={4} onChange={(e) => handleAddAlbums(e)}>
+                                    <Option value="" text="-- Chọn Album --"></Option>
+                                    {albums && albums.map((album) => (
+                                        <Option key={album.albumId} value={JSON.stringify(album)}
+                                                text={album.title}></Option>
+                                    ))}
+                                </Select>>
                             </Flex>
                             <ErrorMessage condition={validateError} message={validateError?.albums}/>
                             <Flex justifyContent={'space-between'} alignItems="center" gd={{width: '100%', flexWrap: 'wrap'}}>

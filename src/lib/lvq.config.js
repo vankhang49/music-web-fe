@@ -12,7 +12,7 @@ export const themeConfig = {
       id: 1,
       ui: "Layout",
       themeClasses: {
-        default: "bg-[#170f23] text-white",
+        default: "bg-[#161515] text-white",
         theme_1: "bg-zinc-950 text-white shadow-white",
         theme_2: "bg-white text-black border-gray-300",
         theme_3: "text-gray border-gray-300",
@@ -23,7 +23,7 @@ export const themeConfig = {
       id: 2,
       ui: "Container",
       themeClasses: {
-        default: "bg-[#170f23] text-white shadow-white",
+        default: "text-white shadow-black",
         theme_1: "bg-zinc-950 text-white shadow-white",
         theme_2: "bg-white text-black border-gray-300",
         theme_3: "text-white border-gray-300",
@@ -34,7 +34,7 @@ export const themeConfig = {
       id: 3,
       ui: "Button",
       themeClasses: {
-        default: "text-white bg-[#9d4be0] border-[#7e3ab7] hover:bg-[#7e3ab7] active:bg-[#7e3ab7] focus:ring-1 focus:ring-[#9d4be0]",
+        default: "text-white bg-[#4bb3ff] border-[#2e81be] hover:bg-[#2e81be] active:bg-[#2e81be] focus:ring-1 focus:ring-[#4bb3ff]",
         theme_1: "text-white bg-zinc-800 border-zinc-700 hover:bg-zinc-700 active:bg-zinc-800 focus:ring-1 focus:ring-zinc-500",
         theme_2: "text-black bg-[#f3f4f6] border-[#9ca3af] hover:bg-[#e5e7eb] active:bg-[#e5e7eb] focus:ring-1 focus:ring-gray-300",
         theme_3: "text-white bg-indigo-500 border-[#312E81FF] hover:bg-indigo-700 active:bg-indigo-700 focus:ring-1 focus:ring-[#312E81FF]",
@@ -56,7 +56,7 @@ export const themeConfig = {
       id: 4,
       ui: "Form",
       themeClasses: {
-        default: "bg-[#231b2e] text-white",
+        default: "bg-transparent text-black",
         theme_1: "border-blue-300 bg-zinc-800 text-blue-700",
         theme_2: "bg-gray-200 border-gray-300 text-black",
         theme_3: "bg-transparent text-white",
@@ -78,10 +78,10 @@ export const themeConfig = {
       id: 6,
       ui: "Input",
       themeClasses: {
-        default: "border-[#9b4de0] text-[#dadada] bg-[#2f2739]",
+        default: "border-[#bcc9ce80] text-[#000] bg-[#bcc9ce80]",
         theme_1: "border-zinc-300 text-white bg-zinc-900",
         theme_2: "border-gray-300 text-black bg-white",
-        search_2: "border-none text-[#dadada] bg-[#2f2739] rounded-full px-4 focus:bg-[#34224f]",
+        search_2: "border-none text-[#000] bg-[#bcc9ce80] rounded-full px-4 focus:bg-[#a2aeb3]",
         theme_3: "bg-indigo-500/30 text-white placeholder:text-[#fff]",
         theme_4: "bg-rose-300/30 text-white placeholder:text-[#fff]",
       },
@@ -91,10 +91,8 @@ export const themeConfig = {
       ui: "Table",
       themeClasses: {
         default: {
-          table: "bg-[#170f23] text-[#dadada]",
-          evenRow: "bg-[#2f2739]",
-          oddRow: "bg-[#2f2739]",
-          hoverRow: "hover:bg-[#8e46cd]",
+          table: "bg-transparent text-[#fff]",
+          hoverRow: "hover:bg-[#c6edff99] text-[#000]",
         },
         theme_1: {
           table: "bg-zinc-900 text-zinc-200",
@@ -122,7 +120,7 @@ export const themeConfig = {
       id: 8,
       ui: "Pagination",
       themeClasses: {
-        default: "text-white bg-[#2f2739] border-[#9d4be0] hover:bg-[#8e46cd]",
+        default: "text-white bg-[#bcc9ce80] border-[#9d4be0] hover:bg-[#8e46cd]",
         theme_1: "text-zinc-400 bg-gray-900 border-gray-600 hover:bg-gray-700",
         theme_2: "text-blue-500 bg-gray-200 border-gray-300 hover:bg-gray-100",
         theme_4: "text-rose-500 bg-rose-200 border-rose-300 hover:bg-rose-100",
@@ -132,7 +130,7 @@ export const themeConfig = {
       id: 9,
       ui: "Typography",
       themeClasses: {
-        default: "",
+        default: "text-white",
         theme_1: "",
         theme_2: "",
         theme_3: "",
@@ -143,7 +141,7 @@ export const themeConfig = {
       id: 10,
       ui: "Card",
       themeClasses: {
-        default: "card-default",
+        default: "card-default text-white",
         theme_1: "card-theme-1",
         theme_2: "card-theme-2",
       },
@@ -152,7 +150,7 @@ export const themeConfig = {
       id: 11,
       ui: "Editor",
       themeClasses: {
-        default: "bg-[#2f2739] text-[#dadada] border-solid border-[#9b4de0]",
+        default: "bg-[#bcc9ce80] text-[#dadada] border-solid border-[#9b4de0]",
         theme_1: "bg-zinc-900 text-white border-gray-600",
         theme_2: "bg-white",
         theme_3: "bg-indigo-500/30 text-white shadow-white",
@@ -163,7 +161,7 @@ export const themeConfig = {
       id: 12,
       ui: "Header",
       themeClasses: {
-        default: "bg-[#170f23] text-white",
+        default: "bg-[#edffff99] text-black",
         theme_1: "bg-zinc-950 text-white shadow-white",
         theme_2: "bg-white text-black border-gray-300",
         theme_3: "bg-indigo-500/30 text-white",
@@ -174,7 +172,7 @@ export const themeConfig = {
       id: 13,
       ui: "Footer",
       themeClasses: {
-        default: "bg-[#130c1c] text-white",
+        default: "bg-[#edffff99] text-black",
         theme_1: "bg-zinc-950 text-white shadow shadow-white",
         theme_2: "bg-white text-black border-gray-300 shadow shadow-black",
         theme_3: "bg-indigo-500/30 text-white",
@@ -185,9 +183,11 @@ export const themeConfig = {
       id: 14,
       ui: "Nav",
       themeClasses: {
-        default: "px-4 text-[#dadada]",
-        theme_1: "",
+        default: "px-4 text-[#000]",
+        theme_1: "text-white",
         theme_2: "text-black",
+        theme_3: "text-white",
+        theme_4: "text-white",
       },
     },
     {
@@ -205,7 +205,7 @@ export const themeConfig = {
       id: 15,
       ui: "Sidebar",
       themeClasses: {
-        default: "bg-[#231b2e] text-white",
+        default: "bg-[#edffff99] text-black",
         theme_1: "bg-zinc-950 text-white shadow-white border-0 border-r border-dashed border-r-gray-400",
         theme_2: "bg-white text-black border-gray-300 border-0 border-r border-dashed border-r-gray-400",
         theme_3: "bg-indigo-500/30 text-white",
@@ -216,7 +216,7 @@ export const themeConfig = {
       id: 16,
       ui: "Modal",
       themeClasses: {
-        default: "bg-[#34224f] text-white",
+        default: "bg-[#edffffed] text-black",
         theme_1: "bg-[#111] text-white shadow-white",
         theme_2: "bg-[#dcdcdc] text-black border-gray-300",
         theme_3: "bg-indigo-300/90 text-white",

@@ -3,10 +3,22 @@ import axiosClient from "../../utils/axiosClient";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
+export const getAllArtistWithPage = async (artistName, page) => {
+    try {
+        const temp
+            = await axiosClient.get(`artists?artistName=${artistName}&page=${page-1}`);
+        console.log(temp.data)
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
+
 export const getAllArtist = async () => {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/artists`);
+            = await axiosClient.get(`artists/all`);
         console.log(temp.data)
         return temp.data;
     } catch (e) {

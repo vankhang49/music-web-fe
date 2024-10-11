@@ -3,10 +3,22 @@ import axiosClient from "../../utils/axiosClient";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
+export async function getAllSongsWithPage(contentSearch, page) {
+    try {
+        const temp
+            = await axiosClient.get(`songs?title=${contentSearch}&artistName=${contentSearch}&page=${page-1}`);
+        console.log(temp.data);
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
+
 export async function getAllSongs() {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/songs`, {});
+            = await axiosClient.get(`songs/all`, {});
         console.log(temp.data);
         return temp.data;
     } catch (e) {
@@ -18,7 +30,7 @@ export async function getAllSongs() {
 export async function getAllSuggestedSongs() {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/songs/page`, {});
+            = await axios.get(`${BASE_URL}/api/public/songs/suggestedSongs`, {});
         console.log(temp.data);
         return temp.data.content;
     } catch (e) {
@@ -61,7 +73,7 @@ export const saveSong= async (song) => {
     } catch (e) {
         console.log(e)
         throw e.response?.data;
-        
+
     }
 
 }

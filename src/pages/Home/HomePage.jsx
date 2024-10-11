@@ -79,12 +79,9 @@ function HomePage() {
                     }, 60000); // 60 giây
                 });
 
-                // Dùng Promise.race để đua giữa API và timeout
                 const result = await Promise.race([apiPromise, timeoutPromise]);
 
-                // Nếu hết thời gian và không nhận được phản hồi từ API
                 if (result === "timeout") {
-                    // Đặt lại albums và suggested songs với giá trị mặc định
                     setAlbums(albumsWantToListen);
                     setSuggestedSongs(songSuggestions);
                 }
@@ -286,30 +283,70 @@ function HomePage() {
                             gap={1}/>
                 </Flex>
                 <Grid columns={1} sm={2} xl={3} gap={6}>
-                    <Card className="hover-card"
-                          srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                          title="Remix thịnh hành" description="Mô tả " descriptionLink="/fj" LinkComponent={Link} long
-                          time="2 ngày trước"></Card>
-                    <Card className="hover-card"
-                          srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                          title="Remix thịnh hành" description="Mô tả " descriptionLink="/fj" LinkComponent={Link} long
-                          time="2 ngày trước"></Card>
-                    <Card className="hover-card"
-                          srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                          title="Remix thịnh hành" description="Mô tả " descriptionLink="/fj" LinkComponent={Link} long
-                          time="2 ngày trước"></Card>
-                    <Card className="hover-card"
-                          srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                          title="Remix thịnh hành" description="Mô tả " descriptionLink="/fj" LinkComponent={Link} long
-                          time="2 ngày trước"></Card>
-                    <Card className="hover-card"
-                          srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                          title="Remix thịnh hành" description="Mô tả " descriptionLink="/fj" LinkComponent={Link} long
-                          time="2 ngày trước"></Card>
-                    <Card className="hover-card"
-                          srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                          title="Remix thịnh hành" description="Mô tả " descriptionLink="/fj" LinkComponent={Link} long
-                          time="2 ngày trước"></Card>
+                    {suggestedSongs && suggestedSongs.map((song, index) => (
+                        <Flex className={playSongList[songIndexList]?.songId === song.songId && isPlayingSong
+                            ? "audio-card active" : "audio-card"}>
+                            <Card sizeImg={60}
+                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active": "song-card"}
+                                  key={index} long
+                                  srcImg={song.coverImageUrl}
+                                  title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
+                                  description={song.artists.map((artist, index) => (
+                                      <Typography tag={'span'}>
+                                          {artist.artistName}
+                                          {index !== song.artists.length - 1 && <Typography tag={'span'}>, </Typography>}
+                                      </Typography>
+                                  ))}
+                                  children={
+                                      <Flex justifyContent={'end'} alignItems={'center'}>
+                                          <Button className={'card-icon kara'} theme={'reset'} icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
+                                          <Button className={'card-icon heart'} theme={'reset'} icon={<IoIosHeart size={18}/>}></Button>
+                                          <Button className={'card-icon menu'} theme={'reset'} id={`active-song-menu-${song.songId}`}
+                                                  onClick={(e) => {
+                                                      e.stopPropagation();
+                                                      openSongMenu(song.songId)
+                                                  }}
+                                                  icon={<HiOutlineDotsHorizontal size={18}/>}></Button>
+                                          <Typography className={'duration'} right tag="small">{((song.duration)/60).toFixed(2).replace('.', ':')}</Typography>
+                                          {song.songId === modalSongIndex &&
+                                              <ModalSongMenu
+                                                  isOpen={isOpenSongMenu}
+                                                  onClose={handleCloseSongMenu}
+                                                  song={song}
+                                              ></ModalSongMenu>
+                                          }
+                                      </Flex>
+                                  }
+                                  gd={{ maxWidth: '100%'}}
+                                  onClick={()=>handlePlaySong(index)}
+                            >
+                            </Card>
+                            <Flex justifyContent={"center"} alignItems={'center'}
+                                  className={'audio-play'}
+                                  gd={{width: 60, height: 60, margin: 10}}
+                            >
+                                {
+                                    playSongList[songIndexList]?.songId === song.songId ?
+                                        <Button theme={'reset'}
+                                                onClick={handlePlayAndPauseSong}
+                                                icon={
+                                                    isPlayingSong ? <img src={wave} height={20} alt="wave"/>
+                                                        : <FaPlay size={20} style={{paddingLeft: 5}} color={"white"}/>
+                                                }
+                                                gd={{border: 'none'}}
+                                        >
+                                        </Button>
+                                        :
+                                        <Button theme={'reset'}
+                                                onClick={() => handlePlaySong(index)}
+                                                icon={<FaPlay size={20} style={{paddingLeft: 5}} color={"white"}/>}
+                                                gd={{border: 'none'}}
+                                        >
+                                        </Button>
+                                }
+                            </Flex>
+                        </Flex>
+                    ))}
                 </Grid>
             </Container>
             <Container withShadow={false}>
@@ -319,24 +356,14 @@ function HomePage() {
                             gap={1}/>
                 </Flex>
                 <Grid columns={2} sm={2} md={3} xl={6} gap={6}>
-                    <Card
-                        srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                        title="Remix thịnh hành" description="Mô tả "></Card>
-                    <Card
-                        srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                        title="Remix thịnh hành" description="Mô tả "></Card>
-                    <Card
-                        srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                        title="Remix thịnh hành" description="Mô tả "></Card>
-                    <Card
-                        srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                        title="Remix thịnh hành" description="Mô tả "></Card>
-                    <Card
-                        srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                        title="Remix thịnh hành" description="Mô tả "></Card>
-                    <Card
-                        srcImg="https://yt3.googleusercontent.com/oN0p3-PD3HUzn2KbMm4fVhvRrKtJhodGlwocI184BBSpybcQIphSeh3Z0i7WBgTq7e12yKxb=s900-c-k-c0x00ffffff-no-rj"
-                        title="Remix thịnh hành" description="Mô tả "></Card>
+                    {albums && albums.map((album, index) => (
+                        <Card srcImg={album.coverImageUrl}
+                              title={album.title.length > 17 ? `${album.title.substring(0, 15)}...` : album.title}
+                              urlLink={`/albums/${album.albumId}`}
+                              LinkComponent={Link} description={album.provide}
+                        >
+                        </Card>
+                    ))}
                 </Grid>
             </Container>
         </>

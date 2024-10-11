@@ -1,34 +1,41 @@
 import React, {useEffect, useState} from 'react';
-import LayoutDashboard from '../../../layouts/LayoutDashboard';
-import {Button, Container, Flex, Group, Input, Pagination, Table, Typography} from 'lvq';
+import {Button, Container, Flex, Form, Group, Input, Pagination, Table, Typography} from 'lvq';
 import {useNavigate} from "react-router-dom";
-import * as albumService from "../../../core/services/AlbumService";
 import {CiEdit} from "react-icons/ci";
 import {MdDelete} from "react-icons/md";
 import * as artistService from "../../../core/services/ArtistService";
+import {useForm} from "react-hook-form";
 
 function ArtistList() {
     const [artists, setArtists] = useState([]);
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 100; // Tổng số trang
+    const [totalPages, setTotalPages] = useState(null);
+    const [contentSearch, setContentSearch] = useState("");
+    const {register, handleSubmit, formState: {errors}, setValue, control} = useForm({
+
+    });
 
     useEffect(() => {
         const fetchData = async ()=> {
-            await getAllArtists();
+            await getAllArtists(contentSearch, currentPage);
         }
         fetchData();
-    }, []);
+    }, [contentSearch, currentPage]);
 
-    const getAllArtists = async () => {
-        const temp = await artistService.getAllArtist();
-        setArtists(temp);
+    const getAllArtists = async (artistName, currentPage) => {
+        const temp = await artistService.getAllArtistWithPage(artistName, currentPage);
+        setArtists(temp.content);
+        setTotalPages(temp.totalPages);
     }
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
-        console.log(`Đã chọn trang: ${page}`); // Xử lý số trang được chọn (ví dụ: log ra console)
     };
+
+    const onSubmit = (data) => {
+        setContentSearch(data.contentSearch);
+    }
 
     const columns = [
         {
@@ -70,10 +77,11 @@ function ArtistList() {
                 <Button text='Thêm mới' onClick={() => navigate("/dashboard/artist-create")} />
             </Flex>
             <Group className=''>
-                <Flex>
-                    <Input type="text" gd={{ maxWidth: "400px" }} placeholder='Tìm kiếm bài hát ...' />
-                    <Button text='Tìm kiếm' />
-                </Flex>
+                <Form className={'bg-transparent'} onSubmit={handleSubmit(onSubmit)} >
+                    <Input type="text" gd={{ maxWidth: "400px" }} {...register("contentSearch")}
+                           placeholder='Tìm kiếm nghệ sĩ ...' />
+                    <Button type={"submit"} text='Tìm kiếm' gd={{display: "none"}}/>
+                </Form>
                 <Table border={false} columns={columns} data={artists} rowKey={"id"} />
                 <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
             </Group>

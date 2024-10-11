@@ -1,0 +1,163 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.popup-message {
+  position: fixed;
+  top: 78px;
+  right: 10px;
+  max-width: 350px;
+  min-width: 250px;
+  z-index: 1000;
+
+  .popup {
+    animation: slideIn 0.3s ease-in-out forwards;
+
+    &.exit {
+      animation: fadeOut 0.5s ease-in-out forwards;
+    }
+    .popup-action {
+      height: 48%;
+      width: 98%;
+      padding: 0 10px;
+      img {
+        width: 30%;
+        height: auto;
+      }
+    }
+
+    .popup-content {
+      height: 48%;
+      width: 97%;
+      background-color: rgba(234, 207, 188, 0.81);
+      padding: 10px;
+      margin-left: 5px;
+      font-size: 1.1rem;
+      position: relative;
+      border-radius: 10px;
+      color: var(--color-text);
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        --angle: 0deg;
+        background-image: conic-gradient(
+                        from var(--angle), #ea2dd8, #001bf1, #ea2dd8
+        );
+        animation: autoRotate 2s linear infinite;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        padding: 5px;
+        box-sizing: unset;
+      }
+
+      &::after {
+        filter: blur(60px);
+      }
+
+      .close-popup {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+
+        svg {
+          width: 25px;
+          height: 25px;
+          color: white;
+        }
+      }
+    }
+
+    .success {
+      .close-popup {
+        svg {
+          color: #17e113;
+        }
+      }
+
+      &::before {
+      background-image: conic-gradient(
+                      from var(--angle), #36e40d, #ea9c0c, #2dea53
+      );
+      }
+    }
+
+    .warning {
+      .close-popup {
+        svg {
+          color: #e8910e;
+        }
+      }
+
+      &::before {
+        background-image: conic-gradient(
+                        from var(--angle), #f68501, #eabe0c, #f6a104
+        );
+      }
+    }
+
+    .error {
+      .close-popup {
+        svg {
+          color: #e80e48;
+        }
+      }
+
+      &::before {
+        background-image: conic-gradient(
+                        from var(--angle), #e40d2d, #ea130c, #d8089d
+        );
+      }
+    }
+
+    .info {
+      .close-popup {
+        svg {
+          color: #0e53e8;
+        }
+      }
+
+      &::before {
+        background-image: conic-gradient(
+                        from var(--angle), #0db2e4, #0c74ea, #02aeec
+        );
+      }
+    }
+  }
+}
+
+@keyframes autoRotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

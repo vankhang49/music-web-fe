@@ -6,7 +6,7 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 export const getAllAlbumsWithPage = async (contentSearch, page) => {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/albums?title=${contentSearch}&artistName=${contentSearch}&page=${page-1}`);
+            = await axiosClient.get(`albums?title=${contentSearch}&artistName=${contentSearch}&page=${page-1}`);
         console.log(temp.data)
         return temp.data;
     } catch (e) {
@@ -18,7 +18,7 @@ export const getAllAlbumsWithPage = async (contentSearch, page) => {
 export const getAllAlbums = async () => {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/albums/all`);
+            = await axiosClient.get(`albums/all`);
         console.log(temp.data)
         return temp.data;
     } catch (e) {
@@ -30,7 +30,7 @@ export const getAllAlbums = async () => {
 export const getAllSuggestedAlbums = async () => {
     try {
         const temp
-            = await axios.get(`${BASE_URL}/api/public/albums/page`);
+            = await axios.get(`${BASE_URL}/api/public/albums/suggestedAlbums`);
         console.log(temp.data)
         return temp.data.content;
     } catch (e) {
@@ -46,7 +46,7 @@ export const getAlbumById = async (albumId) => {
         return temp.data;
     } catch (e) {
         console.log(e)
-        return null;
+        return {}
     }
 }
 
