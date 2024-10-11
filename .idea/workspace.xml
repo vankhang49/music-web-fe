@@ -5,36 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b7af0de-8e9f-4293-bdb7-f20de04c0b71" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/gif/bubu-dudu-sseeyall.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/gif/cute-dancing-panda.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/gif/cute-penguin.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/gif/dudu-cute-dudu-blur.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/gif/panda-hi.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/taylor swift.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/contexts/PopUp.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/contexts/PopUpContext.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/global.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/global.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommentBox/CommentBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentBox/CommentBox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommentBox/ReplyComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentBox/ReplyComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CommentBox/commentBox.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CommentBox/commentBox.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/PlayMusicFooter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/PlayMusicFooter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LyricAndComment/LyricAndComment.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LyricAndComment/LyricAndComment.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LyricAndComment/LyricAndComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LyricAndComment/LyricAndComment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal/ModalSearch.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal/ModalSearch.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/AlbumService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/AlbumService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/ArtistService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/ArtistService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/AuthenticationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/AuthenticationService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/SongService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/SongService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/services/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/UserService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/lvq.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/lvq.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Album/Album.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Album/Album.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Album/AlbumsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Album/AlbumsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Artist/ArtistCreate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Artist/ArtistCreate.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Artist/ArtistList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Artist/ArtistList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Song/SongCreate.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Song/SongCreate.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Song/SongList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/Song/SongList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/songSuggestions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/songSuggestions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/HomePage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,21 +33,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/my_project/music-web-fe/src/assets/gif",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/my_project/music-web-fe/src/assets/gif&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.2\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\my_project\music-web-fe\src\assets\gif" />
@@ -116,7 +88,8 @@
       <workItem from="1728116820270" duration="90000" />
       <workItem from="1728438839706" duration="1339000" />
       <workItem from="1728459500017" duration="73000" />
-      <workItem from="1728633423060" duration="5462000" />
+      <workItem from="1728633423060" duration="5494000" />
+      <workItem from="1728640786577" duration="157000" />
     </task>
     <servers />
   </component>

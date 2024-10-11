@@ -104,7 +104,7 @@ export const songSuggestions = [
     },
     {
         "songId": 7,
-        "title" : "Love Your Self",
+        "title" : "Love Sick Girls",
         "artists" : [
             {
                 "artistId" : 8,

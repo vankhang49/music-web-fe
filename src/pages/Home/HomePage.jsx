@@ -66,17 +66,15 @@ function HomePage() {
 
         const fetchData = async () => {
             try {
-                // Tạo promise cho việc gọi API với thời gian chờ tối đa 60 giây
                 const apiPromise = (async () => {
                     await getAllAlbumsFromService();
                     await getAllSongSuggested();
                 })();
 
-                // Tạo promise timeout sau 60 giây
                 const timeoutPromise = new Promise((resolve) => {
                     timeoutId = setTimeout(() => {
                         resolve("timeout");
-                    }, 60000); // 60 giây
+                    }, 60000);
                 });
 
                 const result = await Promise.race([apiPromise, timeoutPromise]);
@@ -87,7 +85,6 @@ function HomePage() {
                 }
             } catch (error) {
                 console.error("Lỗi khi gọi API:", error);
-                // Đặt lại giá trị nếu có lỗi
                 setAlbums(albumsWantToListen);
                 setSuggestedSongs(songSuggestions);
             }
@@ -95,26 +92,25 @@ function HomePage() {
 
         fetchData();
 
-        // Xóa timeout nếu component unmount
         return () => clearTimeout(timeoutId);
     }, [])
 
     const getAllAlbumsFromService = async () => {
-            const temp = await albumsService.getAllSuggestedAlbums();
-            if (temp.length > 0) {
-                setAlbums(temp);
-            } else {
-                setAlbums(albumsWantToListen); // Fallback to static data
-            }
+        const temp = await albumsService.getAllSuggestedAlbums();
+        if (temp.length > 0) {
+            setAlbums(temp);
+        } else {
+            setAlbums(albumsWantToListen);
+        }
     }
 
     const getAllSongSuggested = async () => {
-            const temp = await songService.getAllSuggestedSongs();
-            if (temp.length > 0) {
-                setSuggestedSongs(temp);
-            } else {
-                setSuggestedSongs(songSuggestions); // Fallback to static data
-            }
+        const temp = await songService.getAllSuggestedSongs();
+        if (temp.length > 0) {
+            setSuggestedSongs(temp);
+        } else {
+            setSuggestedSongs(songSuggestions);
+        }
     }
 
     const handlePlaySong = (index) => {
@@ -195,27 +191,32 @@ function HomePage() {
                         <Flex className={playSongList[songIndexList]?.songId === song.songId && isPlayingSong
                             ? "audio-card active" : "audio-card"}>
                             <Card sizeImg={60}
-                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active": "song-card"}
+                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active" : "song-card"}
                                   key={index} long
                                   srcImg={song.coverImageUrl}
                                   title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
                                   description={song.artists.map((artist, index) => (
                                       <Typography tag={'span'}>
                                           {artist.artistName}
-                                          {index !== song.artists.length - 1 && <Typography tag={'span'}>, </Typography>}
+                                          {index !== song.artists.length - 1 &&
+                                              <Typography tag={'span'}>, </Typography>}
                                       </Typography>
                                   ))}
                                   children={
                                       <Flex justifyContent={'end'} alignItems={'center'}>
-                                          <Button className={'card-icon kara'} theme={'reset'} icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
-                                          <Button className={'card-icon heart'} theme={'reset'} icon={<IoIosHeart size={18}/>}></Button>
-                                          <Button className={'card-icon menu'} theme={'reset'} id={`active-song-menu-${song.songId}`}
+                                          <Button className={'card-icon kara'} theme={'reset'}
+                                                  icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
+                                          <Button className={'card-icon heart'} theme={'reset'}
+                                                  icon={<IoIosHeart size={18}/>}></Button>
+                                          <Button className={'card-icon menu'} theme={'reset'}
+                                                  id={`active-song-menu-${song.songId}`}
                                                   onClick={(e) => {
                                                       e.stopPropagation();
                                                       openSongMenu(song.songId)
                                                   }}
                                                   icon={<HiOutlineDotsHorizontal size={18}/>}></Button>
-                                          <Typography className={'duration'} right tag="small">{((song.duration)/60).toFixed(2).replace('.', ':')}</Typography>
+                                          <Typography className={'duration'} right
+                                                      tag="small">{((song.duration) / 60).toFixed(2).replace('.', ':')}</Typography>
                                           {song.songId === modalSongIndex &&
                                               <ModalSongMenu
                                                   isOpen={isOpenSongMenu}
@@ -225,8 +226,8 @@ function HomePage() {
                                           }
                                       </Flex>
                                   }
-                                  gd={{ maxWidth: '100%'}}
-                                  onClick={()=>handlePlaySong(index)}
+                                  gd={{maxWidth: '100%'}}
+                                  onClick={() => handlePlaySong(index)}
                             >
                             </Card>
                             <Flex justifyContent={"center"} alignItems={'center'}
@@ -287,27 +288,32 @@ function HomePage() {
                         <Flex className={playSongList[songIndexList]?.songId === song.songId && isPlayingSong
                             ? "audio-card active" : "audio-card"}>
                             <Card sizeImg={60}
-                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active": "song-card"}
+                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active" : "song-card"}
                                   key={index} long
                                   srcImg={song.coverImageUrl}
                                   title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
                                   description={song.artists.map((artist, index) => (
                                       <Typography tag={'span'}>
                                           {artist.artistName}
-                                          {index !== song.artists.length - 1 && <Typography tag={'span'}>, </Typography>}
+                                          {index !== song.artists.length - 1 &&
+                                              <Typography tag={'span'}>, </Typography>}
                                       </Typography>
                                   ))}
                                   children={
                                       <Flex justifyContent={'end'} alignItems={'center'}>
-                                          <Button className={'card-icon kara'} theme={'reset'} icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
-                                          <Button className={'card-icon heart'} theme={'reset'} icon={<IoIosHeart size={18}/>}></Button>
-                                          <Button className={'card-icon menu'} theme={'reset'} id={`active-song-menu-${song.songId}`}
+                                          <Button className={'card-icon kara'} theme={'reset'}
+                                                  icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
+                                          <Button className={'card-icon heart'} theme={'reset'}
+                                                  icon={<IoIosHeart size={18}/>}></Button>
+                                          <Button className={'card-icon menu'} theme={'reset'}
+                                                  id={`active-song-menu-${song.songId}`}
                                                   onClick={(e) => {
                                                       e.stopPropagation();
                                                       openSongMenu(song.songId)
                                                   }}
                                                   icon={<HiOutlineDotsHorizontal size={18}/>}></Button>
-                                          <Typography className={'duration'} right tag="small">{((song.duration)/60).toFixed(2).replace('.', ':')}</Typography>
+                                          <Typography className={'duration'} right
+                                                      tag="small">{((song.duration) / 60).toFixed(2).replace('.', ':')}</Typography>
                                           {song.songId === modalSongIndex &&
                                               <ModalSongMenu
                                                   isOpen={isOpenSongMenu}
@@ -317,8 +323,8 @@ function HomePage() {
                                           }
                                       </Flex>
                                   }
-                                  gd={{ maxWidth: '100%'}}
-                                  onClick={()=>handlePlaySong(index)}
+                                  gd={{maxWidth: '100%'}}
+                                  onClick={() => handlePlaySong(index)}
                             >
                             </Card>
                             <Flex justifyContent={"center"} alignItems={'center'}
