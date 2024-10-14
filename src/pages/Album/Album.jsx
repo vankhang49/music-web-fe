@@ -41,22 +41,18 @@ export function Album() {
 
         const fetchData = async () => {
             try {
-                // Tạo promise cho việc gọi API với thời gian chờ tối đa 60 giây
                 const apiPromise = (async () => {
                     await getAlbumById(id);
                 })();
 
-                // Tạo promise timeout sau 60 giây
                 const timeoutPromise = new Promise((resolve) => {
                     timeoutId = setTimeout(() => {
                         resolve("timeout");
-                    }, 60000); // 60 giây
+                    }, 30000);
                 });
 
-                // Dùng Promise.race để đua giữa API và timeout
                 const result = await Promise.race([apiPromise, timeoutPromise]);
 
-                // Nếu hết thời gian và không nhận được phản hồi từ API
                 if (result === "timeout") {
                     setAlbum(tempAlbum);
                 }
@@ -67,7 +63,6 @@ export function Album() {
 
         fetchData();
 
-        // Xóa timeout nếu component unmount
         return () => clearTimeout(timeoutId);
     }, [id]);
 
@@ -80,10 +75,7 @@ export function Album() {
         }
     }
 
-    // flag to prevent double calls
-
     const handlePlayAlbum = () => {
-        // Assuming 'album.songs' is an array of songs for this album
         if (playSongList !== album.songs) {
             addSongList(album.songs);
             changeSongIndex(0);

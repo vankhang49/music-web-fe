@@ -74,7 +74,7 @@ function HomePage() {
                 const timeoutPromise = new Promise((resolve) => {
                     timeoutId = setTimeout(() => {
                         resolve("timeout");
-                    }, 60000);
+                    }, 30000);
                 });
 
                 const result = await Promise.race([apiPromise, timeoutPromise]);
