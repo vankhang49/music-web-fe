@@ -97,7 +97,7 @@ export const saveSong= async (song) => {
     } catch (e) {
         console.log(e)
         throw e.response?.data;
-
+        
     }
 
 }
@@ -120,4 +120,3 @@ export const updateListens = async (song) => {
         console.log(e)
     }
 }
-
