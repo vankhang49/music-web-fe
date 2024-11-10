@@ -39,7 +39,7 @@ export async function getAllSuggestedSongs() {
     }
 }
 
-export async function getTop100Songs(national, size) {
+export async function getTop100SongsWithTimes(national, size) {
     try {
         if (size === undefined) {
             size = 100;
@@ -48,6 +48,30 @@ export async function getTop100Songs(national, size) {
             = await axios.get(`${BASE_URL}/api/public/songs/top-song?national=${national}&size=${size}`);
         console.log(temp.data);
         return temp.data.content;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
+
+export async function getNew100Songs() {
+    try {
+        const temp
+            = await axios.get(`${BASE_URL}/api/public/songs/new-song-ratings`);
+        console.log(temp.data);
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
+
+export async function getTop100Songs() {
+    try {
+        const temp
+            = await axios.get(`${BASE_URL}/api/public/songs/top-100-songs`);
+        console.log(temp.data);
+        return temp.data;
     } catch (e) {
         console.log(e)
         return [];
