@@ -104,9 +104,9 @@ export const navigationHomeItems1 = [
 ];
 
 export const navigationHomeItems2 = [
-    { id: 'rank', label: 'BXH Nhạc mới', link: '/moi-phat-hanh', icon: <Rank />, iconPosition: 'left' },
+    { id: 'rank', label: 'BXH Nhạc mới', link: '/new-songs-ratings', icon: <Rank />, iconPosition: 'left' },
     { id: 'topic-type', label: 'Chủ đề & Thể loại', link: '/hub', icon: <TopicType />, iconPosition: 'left' },
-    { id: 'top100', label: 'Top 100', link: '/top100', icon: <Top100 />, iconPosition: 'left' },
+    { id: 'top100', label: 'Top 100', link: '/top-100-songs', icon: <Top100 />, iconPosition: 'left' },
     { id: 'history', label: 'Nghe gần đây', link: '/history', icon: <History />, iconPosition: 'left' },
     { id: 'love-song', label: 'Bài hát yêu thích', link: '/love-song', icon: <LoveSong />, iconPosition: 'left' },
     { id: 'playlist', label: 'Playlist', link: '/playlist', icon: <Playlist />, iconPosition: 'left' },

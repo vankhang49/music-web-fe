@@ -28,7 +28,7 @@ export function TopWeek() {
     }, [national]);
 
     const getTop100Songs = async (national) => {
-        const temp = await songService.getTop100Songs(national);
+        const temp = await songService.getTop100SongsWithTimes(national);
         setTop100(temp);
     }
 
@@ -78,7 +78,7 @@ export function TopWeek() {
             <Flex justifyContent={'start'} alignItems={'center'} className="national">
                 <Anchor LinkComponent={Link} to={'/m-chart-week/Việt Nam'}
                         className={national === 'Việt Nam' && 'active'}
-                 >Việt Nam</Anchor>
+                >Việt Nam</Anchor>
                 <Anchor LinkComponent={Link} to={'/m-chart-week/Âu Mỹ'}
                         className={national === 'Âu Mỹ' && 'active'}
                 >Âu Mỹ</Anchor>

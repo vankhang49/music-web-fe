@@ -27,7 +27,7 @@ export function Top10Week({national}) {
     }, []);
 
     const getTop100Songs = async (national, size) => {
-        const temp = await songService.getTop100Songs(national, size);
+        const temp = await songService.getTop100SongsWithTimes(national, size);
         setTop100(temp);
     }
 

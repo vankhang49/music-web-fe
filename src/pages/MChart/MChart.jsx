@@ -3,19 +3,15 @@ import './MChart.scss'
 import {LineChart} from "../../components/Chart/LineChart";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {getTop100Songs} from "../../core/services/SongService";
 import * as songService from "../../core/services/SongService";
 import {usePlayMusic} from "../../core/contexts/PlayMusicContext";
-import {Top10Week, top10Week} from "../../components/Top-10-week/Top10Week";
+import {Top10Week} from "../../components/Top-10-week/Top10Week";
 
 function MChart(props) {
     const {
         playSongList,
-        songIndexList,
         addSongList,
         changeSongIndex,
-        toggleIsPlayingSong,
-        isPlayingSong,
     } = usePlayMusic();
 
     const [top100, setTop100] = useState([]);
@@ -28,7 +24,7 @@ function MChart(props) {
     }, []);
 
     const getTop100Songs = async (national) => {
-        const temp = await songService.getTop100Songs(national);
+        const temp = await songService.getTop100SongsWithTimes(national);
         setTop100(temp);
     }
 
@@ -45,7 +41,7 @@ function MChart(props) {
             header: '',
             render: (row, index) => (
                 <Typography className={`No is-top-${index+1}`}
-                    tag={'span'}>{index + 1}</Typography>
+                            tag={'span'}>{index + 1}</Typography>
             ),
         },
         {
