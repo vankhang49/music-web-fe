@@ -16,6 +16,9 @@ import {Album} from "../pages/Album/Album";
 import {LoginForm} from "../pages/Login/LoginForm";
 import {TopWeek} from "../pages/TopWeek/TopWeek";
 import {Artist} from "../pages/Artist/Artist";
+import {FavoriteList} from "../pages/Dashboard/Favorite/FavoriteList";
+import {Top100Songs} from "../pages/Top100/Top100Songs";
+import {NewRatings} from "../pages/NewRatings/NewRatings";
 
 export const userRoutes = [
   {
@@ -36,12 +39,25 @@ export const userRoutes = [
     component: <TopWeek />,
   },
   {
+    path: '/new-songs-ratings',
+    component: <NewRatings/>,
+  },
+  {
+    path: '/top-100-songs',
+    component: <Top100Songs />,
+  },
+  {
     path: '/albums/:id',
     component: <Album/>,
   },
   {
     path: '/artists/:artistName',
     component: <Artist/>,
+  },
+  {
+    path: '/love-song',
+    component: <FavoriteList />,
+    private: true,
   },
   // {
   //   path: '/login',

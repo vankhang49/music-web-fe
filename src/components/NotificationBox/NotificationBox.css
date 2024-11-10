@@ -1,0 +1,25 @@
+.notification {
+    max-width: 350px;
+    min-width: 250px;
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    top: 64px;
+    right: 0;
+    border-radius: 15px;
+    background: var(--bg-comment)!important;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+
+    .notification-content {
+        background: var(--bg-content-comment)!important;
+        border-radius: 25px;
+        height: 80%;
+        padding: 10px;
+    }
+}
+
+.notification.active-notification {
+    transform: translateY(0);
+}
+
