@@ -39,6 +39,18 @@ export async function getAllSuggestedSongs() {
     }
 }
 
+export async function getTop3SongsIn7Days() {
+    try {
+        const temp
+            = await axios.get(`${BASE_URL}/api/public/songs/top-3-songs-in-7-days`);
+        console.log(temp.data);
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
+
 export async function getTop100SongsWithTimes(national, size) {
     try {
         if (size === undefined) {
@@ -50,6 +62,20 @@ export async function getTop100SongsWithTimes(national, size) {
         return temp.data.content;
     } catch (e) {
         console.log(e)
+        return [];
+    }
+}
+
+export const getAllFavoriteSongs = async (sort, direction,page,size) => {
+    try {
+        if (direction === undefined) {
+            direction = "ASC";
+        }
+        const response
+            = await axiosClient.get(`songs/favorites?sort=${sort}&direction=${direction}&page=${page}&size=${size}`);
+        console.log(response.data)
+        return response.data;
+    } catch (e) {
         return [];
     }
 }
@@ -91,7 +117,7 @@ export const getSongById = async (songId) => {
 
 export const saveSong= async (song) => {
     try {
-        const temp = await axiosClient.post(`songs`, song);
+        const temp = await axios.post(`${BASE_URL}/api/auth/songs`, song);
         console.log(temp.data)
         return temp.data;
     } catch (e) {
@@ -112,11 +138,12 @@ export const updateSong= async (song) => {
     }
 }
 
-export const updateListens = async (song) => {
+export const updateListens = async (songId) => {
     try {
-        await axios.put(`${BASE_URL}/api/public/song-listens`, song);
+        await axios.put(`${BASE_URL}/api/public/song-listens?songId=${songId}`);
 
     } catch (e) {
         console.log(e)
     }
 }
+

@@ -12,7 +12,7 @@ export const themeConfig = {
       id: 1,
       ui: "Layout",
       themeClasses: {
-        default: "bg-[#161515] text-white",
+        default: "bg-[#161515] text-black",
         theme_1: "bg-zinc-950 text-white shadow-white",
         theme_2: "bg-white text-black border-gray-300",
         theme_3: "text-gray border-gray-300",
@@ -23,7 +23,7 @@ export const themeConfig = {
       id: 2,
       ui: "Container",
       themeClasses: {
-        default: "text-white shadow-black",
+        default: " text-black shadow-black",
         theme_1: "bg-zinc-950 text-white shadow-white",
         theme_2: "bg-white text-black border-gray-300",
         theme_3: "text-white border-gray-300",
@@ -130,7 +130,7 @@ export const themeConfig = {
       id: 9,
       ui: "Typography",
       themeClasses: {
-        default: "text-white",
+        default: "",
         theme_1: "",
         theme_2: "",
         theme_3: "",
@@ -141,9 +141,11 @@ export const themeConfig = {
       id: 10,
       ui: "Card",
       themeClasses: {
-        default: "card-default text-white",
+        default: "card-default text-white hover:text-[#000]",
         theme_1: "card-theme-1",
         theme_2: "card-theme-2",
+        theme_3: "card-theme-3 text-white",
+        theme_4: "card-theme_4 text-white",
       },
     },
     {
@@ -184,7 +186,7 @@ export const themeConfig = {
       ui: "Nav",
       themeClasses: {
         default: "px-4 text-[#000]",
-        theme_1: "text-white",
+        theme_1: "",
         theme_2: "text-black",
         theme_3: "text-white",
         theme_4: "text-white",
@@ -194,7 +196,7 @@ export const themeConfig = {
       id: 15,
       ui: "Anchor",
       themeClasses: {
-        default: "text-white",
+        default: "text-black",
         theme_1: "text-white",
         theme_2: "text-black",
         theme_3: "text-white",

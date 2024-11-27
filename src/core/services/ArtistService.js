@@ -27,6 +27,20 @@ export const getAllArtist = async () => {
     }
 }
 
+export const getAllFavoriteArtists = async (sort, direction,page,size) => {
+    try {
+        if (direction === undefined) {
+            direction = "ASC";
+        }
+        const response
+            = await axiosClient.get(`artists/favorites?sort=${sort}&direction=${direction}&page=${page}&size=${size}`);
+        console.log(response.data)
+        return response.data;
+    } catch (e) {
+        return [];
+    }
+}
+
 export const getArtistById = async (artistId) => {
     try {
         const temp = await axios.get(`${BASE_URL}/api/public/artists/${artistId}`);

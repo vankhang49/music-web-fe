@@ -6,12 +6,17 @@ const PlayMusicContext = createContext();
 export const PlayMusicProvider = ({ children }) => {
     const [isPlayingSong, setIsPlayingSong] = useState(false);
     const [playSongList, setPlaySongList] = useState([]);
+    const [albumOrPlaylistId, setAlbumOrPlaylistId] = useState(null);
     const [songIndexList, setSongIndexList] = useState(0);
     const audioRef = useRef();
 
     const addSongList = (songs) => {
         setPlaySongList(songs);
     };
+
+    const setAlbumPlaylistId = (id) => {
+        setAlbumOrPlaylistId(id);
+    }
 
     const toggleIsPlayingSong = (state) => {
         setIsPlayingSong(state);
@@ -29,9 +34,11 @@ export const PlayMusicProvider = ({ children }) => {
             playSongList,
             songIndexList,
             audioRef,
+            albumOrPlaylistId,
             addSongList,
             toggleIsPlayingSong,
-            changeSongIndex
+            changeSongIndex,
+            setAlbumPlaylistId
         }}>
             {children}
         </PlayMusicContext.Provider>

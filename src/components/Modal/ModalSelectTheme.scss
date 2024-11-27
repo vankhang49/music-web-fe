@@ -1,0 +1,103 @@
+.modal-select-theme {
+  --bg-default: rgba(255, 255, 255, 0.7);
+  --bg-theme-1: #000;
+  --bg-theme-2: #fff;
+  --bg-theme-3: rgba(99, 102, 241, 0.3);
+  --bg-theme-4: rgba(244, 63, 94, 0.3);
+  --color-default: #000;
+  --color-theme-1: #fff;
+  --color-theme-2: #000;
+  --color-theme-3: #fff;
+  --color-theme-4: #fff;
+  --button-default: rgb(75 179 255);
+  --button-theme-1: rgb(255, 255, 255);
+  --button-theme-2: rgb(39 39 42);
+  --button-theme-3: rgb(99 102 241);
+  --button-theme-4: rgb(244 63 94);
+
+  .theme-img, .theme-bg {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+    border-radius: 10px;
+
+    &.active {
+      position: relative;
+      &::before {
+        content: '✓';
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: #20e120;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3/2;
+        background-color: rgba(0, 0, 0, 0.18);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .theme-bg {
+    border: 1px solid #ccc;
+  }
+
+
+  .select-button {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  &.default {
+    background-color: var(--bg-default);
+    h1, h2 {
+      color: var(--color-default);
+    }
+    .select-button {
+      background-color: var(--button-default);
+      color: var(--color-theme-1);
+    }
+  }
+  &.theme_1 {
+    background-color: var(--bg-theme-1);
+    h1, h2 {
+      color: var(--color-theme-1);
+    }
+    .select-button {
+      background-color: var(--button-theme-1);
+      color: var(--color-default);
+    }
+  }
+  &.theme_2 {
+    background-color: var(--bg-theme-2);
+    h1, h2 {
+      color: var(--color-theme-2);
+    }
+    .select-button {
+      background-color: var(--button-theme-2);
+      color: var(--color-theme-1);
+    }
+  }
+  &.theme_3 {
+    background-color: var(--bg-theme-3);
+    h1, h2 {
+      color: var(--color-theme-3);
+    }
+    .select-button {
+      background-color: var(--button-theme-3);
+      color: var(--color-theme-1);
+    }
+  }
+  &.theme_4 {
+    background-color: var(--bg-theme-4);
+    h1, h2 {
+      color: var(--color-theme-4);
+    }
+    .select-button {
+      background-color: var(--button-theme-4);
+      color: var(--color-theme-1);
+    }
+  }
+}

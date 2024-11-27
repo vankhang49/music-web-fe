@@ -68,7 +68,7 @@ export function PlayQueue({showPlayList}) {
                         <Flex className={'audio-card'}>
                             <Card srcImg={song.coverImageUrl}
                                   key={song.songId}
-                                  title={song?.title}
+                                  title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
                                   long description={
                                 song?.artists.map((artist, index) => (
                                     <Typography tag={"span"} gd={{fontSize: '.8rem'}} key={artist.artistId}>
@@ -82,7 +82,7 @@ export function PlayQueue({showPlayList}) {
                             </Card>
                             <Flex justifyContent={"center"} alignItems={'center'}
                                   className={'audio-play'}
-                                  gd={{width: 56, height: 56, margin: 10}}
+                                  gd={{width: 56, height: 56, margin: "5px 0"}}
                             >
                                 <Button theme={'reset'}
                                         onClick={() => handlePlaySongIndex(index)}
@@ -97,7 +97,9 @@ export function PlayQueue({showPlayList}) {
                             <Card className={'song'}
                                   srcImg={playSongList[songIndexList]?.coverImageUrl}
                                   title={<Typography tag={"p"} gd={{fontSize: '.9rem'}}>
-                                      {playSongList[songIndexList]?.title}</Typography>}
+                                      {playSongList[songIndexList]?.title.length > 17 ?
+                                          `${playSongList[songIndexList]?.title.substring(0, 15)}...`
+                                          : playSongList[songIndexList]?.title}</Typography>}
                                   long description={
                                 playSongList[songIndexList]?.artists.map((artist, index) => (
                                     <Typography tag={"span"} gd={{fontSize: '.8rem'}} key={artist.artistId}>
@@ -135,7 +137,7 @@ export function PlayQueue({showPlayList}) {
                         <Flex className={'audio-card'}>
                             <Card srcImg={song.coverImageUrl}
                                   key={song.songId}
-                                  title={song?.title}
+                                  title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
                                   long description={
                                 song?.artists.map((artist, index) => (
                                     <Typography tag={"span"} gd={{fontSize: '.8rem'}} key={artist.artistId}>

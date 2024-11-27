@@ -16,6 +16,24 @@
     }
 }
 
+.theme_4.LyricAndComment {
+    .button-header {
+        border-radius: 25px;
+        background-color: rgba(255,255,255,0.23);
+    }
+
+    .button-song {
+        color: white;
+        width: 150px;
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    .button-song.active-button {
+        background-color: rgba(255, 255, 255, 0.29);
+    }
+}
+
 .mount {
     animation: moveTop 1s ease-in-out;
 }

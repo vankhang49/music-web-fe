@@ -39,6 +39,20 @@ export const getAllSuggestedAlbums = async () => {
     }
 }
 
+export const getAllFavoriteAlbums = async (sort, direction,page,size) => {
+    try {
+        if (direction === undefined) {
+            direction = "ASC";
+        }
+        const response
+            = await axiosClient.get(`albums/favorites?sort=${sort}&direction=${direction}&page=${page}&size=${size}`);
+        console.log(response.data)
+        return response.data;
+    } catch (e) {
+        return [];
+    }
+}
+
 export const getAlbumById = async (albumId) => {
     try {
         const temp = await axios.get(`${BASE_URL}/api/public/albums/${albumId}`);

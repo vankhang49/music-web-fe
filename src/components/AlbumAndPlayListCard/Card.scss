@@ -1,0 +1,53 @@
+.albumCard, .playlistCard, .album-card {
+  position: relative;
+
+  .my-2 {
+    margin-top: 0!important;
+  }
+  a {
+    &:hover {
+      color: #da0496;
+    }
+  }
+
+  .action-menu {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    aspect-ratio: 1;
+    display: none;
+
+    .card-icon {
+      border-radius: 50%;
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: var(--bg-content-hover);
+      }
+
+      &.play {
+        border: 1px solid #fff !important;
+      }
+    }
+
+  }
+  &:hover {
+    .action-menu {
+      display: flex;
+      background-color: var(--bg-content);
+      border-radius: 5px;
+    }
+  }
+
+  &.active {
+    .action-menu {
+      display: flex;
+      background-color: var(--bg-content);
+      border-radius: 5px;
+    }
+  }
+}

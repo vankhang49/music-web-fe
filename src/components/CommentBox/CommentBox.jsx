@@ -9,22 +9,24 @@ import {ReplyComponent} from "./ReplyComponent";
 import {over} from 'stompjs';
 import {Stomp} from "@stomp/stompjs";
 import SockJS from 'sockjs-client';
-import {usePopUp} from "../../core/contexts/PopUpContext";
 import haha from "../../assets/gif/haha.gif";
 import love from "../../assets/gif/love.gif";
 import wow from "../../assets/gif/wow.gif";
 import dislike from "../../assets/gif/dislike.gif";
 import like from "../../assets/gif/like.gif";
+import {usePopUp} from "../../core/contexts/PopUpContext";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
+
+const user = JSON.parse(localStorage.getItem("user"));
 
 export function CommentBox({openComment, callOpenComment}) {
     const {
         playSongList,
         songIndexList,
     } = usePlayMusic();
-    const userId = JSON.parse(localStorage.getItem("user"))?.userId || 0;
-    const showPopup = usePopUp();
+    const userId = user?.userId || 0;
+    const showToast = usePopUp();
     const [isOpenComment, setIsOpenComment] = useState(false);
     const [numberElement, setNumberElement] = useState(0);
     const [totalElements, setTotalElements] = useState(0);
@@ -52,10 +54,12 @@ export function CommentBox({openComment, callOpenComment}) {
     }, [openComment]);
 
     useEffect(() => {
+
         const socket = new SockJS(`${BASE_URL}/ws`);
         const stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe("/topic/comment", async (message) => {
+                    console.log("useEffect ở load comment đang hoaạt động")
                     if (songId !== undefined) {
                         const fetchData = async () => {
                             await getAllCommentBySong(songId, size)
@@ -78,7 +82,7 @@ export function CommentBox({openComment, callOpenComment}) {
         const stompClient = Stomp.over(socket);
         stompClient.connect({}, () => {
             stompClient.subscribe("/topic/createComment", async (message) => {
-                showPopup("Vừa có bình luận mới!", '', '5000');
+                showToast("Vừa có bình luận mới!", '', '5000');
                 console.log(message)
                     if (songId !== undefined) {
                         const fetchData = async () => {
@@ -125,12 +129,13 @@ export function CommentBox({openComment, callOpenComment}) {
             const stompClient = over(socket);
             stompClient.connect({}, () => {
                 stompClient.send(urlSocketRef.current, {}, JSON.stringify(newComment));
+                console.log("urlSocket ở create: ", urlSocketRef.current)
             });
-            showPopup("Đăng tải thành công!", '', '5000');
+            showToast("Đăng tải thành công!", 'success' , '5000');
             await getAllCommentBySong(songId, size);
             resetComment();
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Đăng tải thất bại!", 'error' , '5000');
         }
         newComment.content = '';
         newComment.song = null;
@@ -150,14 +155,15 @@ export function CommentBox({openComment, callOpenComment}) {
             const stompClient = over(socket);
             stompClient.connect({}, () => {
                 stompClient.send(urlSocketRef.current, {}, JSON.stringify(newReply));
+                console.log("urlSocket ở create: ", urlSocketRef.current)
             });
-            showPopup("Đăng tải thành công!", '', '5000');
+            showToast("Đăng tải thành công!", 'success' , '5000');
             await getAllCommentBySong(songId, size);
             resetReply();
             setIsReply(false); // Reset trạng thái reply
             setCommentId(null); // Xóa commentId
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Đăng tải thất bại!", 'error' , '5000');
         }
         newReply.content = '';
         newReply.parentComment = null;
@@ -171,7 +177,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -183,7 +189,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -195,7 +201,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -207,7 +213,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -219,7 +225,7 @@ export function CommentBox({openComment, callOpenComment}) {
                 await getAllCommentBySong(songId, size);
             }
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -228,7 +234,7 @@ export function CommentBox({openComment, callOpenComment}) {
             await commentService.removeEmotionComment(commentId);
             await getAllCommentBySong(songId, size);
         } catch (error) {
-            showPopup("Thất bại!", 'error' , '5000');
+            showToast("Thất bại!", 'error' , '5000');
         }
     }
 
@@ -298,6 +304,22 @@ export function CommentBox({openComment, callOpenComment}) {
         return '';
     }
 
+    const showSuccess = () => {
+        showToast("success!", 'success', 5000);
+    }
+    const showWarning = () => {
+        showToast("success!", 'warning', 5000);
+    }
+    const showError = () => {
+        showToast("success!", 'error', 5000);
+    }
+    const showInfo = () => {
+        showToast("success!", 'info', 5000);
+    }
+    const showDefault = () => {
+        showToast("success!", 5000);
+    }
+
     return (
         <Container withShadow={false} className={isOpenComment ? 'comment active-comment' : 'comment'}>
             <Flex justifyContent={'between'} alignItems={'center'} className={'comment-header'}
@@ -315,6 +337,11 @@ export function CommentBox({openComment, callOpenComment}) {
                         }}
                         onClick={handleCloseComment}
                 />
+                <Button theme={'reset'} text={'S'} onClick={showSuccess}></Button>
+                <Button theme={'reset'} text={'W'} onClick={showWarning}></Button>
+                <Button theme={'reset'} text={'E'} onClick={showError}></Button>
+                <Button theme={'reset'} text={'I'} onClick={showInfo}></Button>
+                <Button theme={'reset'} text={'D'} onClick={showDefault}></Button>
                 <Typography tag={'h3'}>{totalElements} BÌNH LUẬN</Typography>
             </Flex>
             <Group className={'comment-content'}
@@ -528,8 +555,8 @@ export function CommentBox({openComment, callOpenComment}) {
                                             />
                                         </Label>
                                         <Button type={'submit'}
+                                                className={'submit-comment'}
                                                 gd={{
-                                                    background: '#52416a',
                                                     height: '30px',
                                                     fontSize: '.7rem',
                                                     border: 'none',
@@ -564,7 +591,7 @@ export function CommentBox({openComment, callOpenComment}) {
                            })}
                     />
                 </Label>
-                <Button type={'submit'} gd={{background: '#52416a', border: "none", marginLeft: 10}}
+                <Button className={'submit-comment'} type={'submit'} gd={{border: "none", marginLeft: 10}}
                         text={"Đăng tải"}></Button>
             </Form>
         </Container>

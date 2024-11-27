@@ -1,12 +1,9 @@
 import {Avatar, Button, Flex, Form, Group, Input, Label, Typography} from "lvq";
 import {BsArrowReturnRight} from "react-icons/bs";
-import {CiHeart} from "react-icons/ci";
-import {IoIosHeart} from "react-icons/io";
 import like from "../../assets/gif/like.gif";
 import love from "../../assets/gif/love.gif";
 import haha from "../../assets/gif/haha.gif";
 import wow from "../../assets/gif/wow.gif";
-import {BiSolidDislike} from "react-icons/bi";
 import dislike from "../../assets/gif/dislike.gif";
 
 export function ReplyComponent(
@@ -221,8 +218,9 @@ export function ReplyComponent(
                         <Input type={'hidden'} {...registerReply('parentComment')}
                                value={JSON.stringify(comment)} gd={{height: '30px', border: 'none'}}/>
                     </Label>
-                    <Button type={'submit'} gd={{
-                        background: '#52416a',
+                    <Button type={'submit'}
+                            className={'submit-comment'}
+                            gd={{
                         height: '30px',
                         fontSize: '.7rem',
                         border: 'none',

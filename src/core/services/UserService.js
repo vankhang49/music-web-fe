@@ -3,7 +3,7 @@ import axiosInstance from "../../utils/axiosClient";
 export const getAllCustomer = async (searchContent, page) => {
     try {
         const temp = await axiosInstance.get(`/users/customer?userCode=${searchContent}` +
-            `&fullName=${searchContent}&page=${page}`);
+        `&fullName=${searchContent}&page=${page}`);
         return temp.data;
     } catch (e) {
         throw e.response.data;

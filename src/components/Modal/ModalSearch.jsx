@@ -46,11 +46,11 @@ const ModalSearch = ({isOpen, onClose, searchValue, position}) => {
                           key={index}
                           shape={search.type === 'artist' ? 'circle' : 'square'}
                           srcImg={search.coverImageUrl}
-                          gd={{padding: 5, maxWidth: '100%', color: '#000'}}
-                          title={<Typography tag={'p'} gd={{color: '#000'}}>{search?.searchTitle}</Typography> }
+                          gd={{padding: 5, maxWidth: '100%'}}
+                          title={search?.searchTitle}
                           className={'card-content'}
                           description={search.artists && search.artists.map((artist, index) => (
-                              <Link to={`/artists/${artist.artistName}`} key={artist.artistId}>
+                              <Link key={artist.artistId}>
                                   {artist.artistName}
                                   {index !==  search.artists.length - 1 && <span>, </span>}
                               </Link>

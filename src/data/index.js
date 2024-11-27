@@ -111,7 +111,6 @@ export const navigationHomeItems2 = [
     { id: 'love-song', label: 'Bài hát yêu thích', link: '/love-song', icon: <LoveSong />, iconPosition: 'left' },
     { id: 'playlist', label: 'Playlist', link: '/playlist', icon: <Playlist />, iconPosition: 'left' },
     { id: 'album', label: 'Album', link: '/album', icon: <Album />, iconPosition: 'left' },
-    { id: 'setting', label: 'Giao diện', icon: <ThemeSwitcher />, iconPosition: 'left' },
 ];
 
 export const navigationHomeItems3 = [

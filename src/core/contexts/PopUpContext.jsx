@@ -18,20 +18,21 @@ export const usePopUp = () => {
 export const PopUpProvider = ({ children }) => {
     const [popups, setPopups] = useState([]);
 
-    const addPopup = (message, type = "success", duration = 3000) => {
+    // Hàm để thêm toast vào danh sách
+    const addToast = (message, type = "success", duration = 3000) => {
         const id = Math.random().toString(36).substr(2, 9);
         setPopups([...popups, { id, message, type, duration }]);
 
         setTimeout(() => {
-            setPopups((currentPopups) =>
-                currentPopups.map((popup) =>
-                    popup.id === id ? { ...popup, isExiting: true } : popup
+            setPopups((currentToasts) =>
+                currentToasts.map((toast) =>
+                    toast.id === id ? { ...toast, isExiting: true } : toast
                 )
             );
         }, duration - 500);
 
         setTimeout(() => {
-            setPopups((currentPopups) => currentPopups.filter(toast => toast.id !== id));
+            setPopups((currentToasts) => currentToasts.filter(toast => toast.id !== id));
         }, duration);
     };
 
@@ -40,7 +41,7 @@ export const PopUpProvider = ({ children }) => {
     }
 
     return (
-        <PopUpContext.Provider value={addPopup}>
+        <PopUpContext.Provider value={addToast}>
             {children}
 
             <div className={"popup-message"}>
