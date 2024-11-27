@@ -16,7 +16,6 @@ export const SidebarHomeMobile = ({ isOpen, onClose }) => {
                 <Nav listNav={navigationHomeItems1} LinkComponent={Link} className="" activeClass="active-class" overflow={false} />
                 <Typography className="hr-top"></Typography>
                 <Nav listNav={navigationHomeItems2} LinkComponent={Link} className="" activeClass="active-class" />
-                <Nav listNav={navigationHomeItems3} LinkComponent={Link} className="" activeClass="active-class" gd={{ marginTop: "auto" }} overflow={false} />
             </Sidebar>
         </Modal>
     );

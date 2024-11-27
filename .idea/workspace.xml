@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5b7af0de-8e9f-4293-bdb7-f20de04c0b71" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/layouts/LayoutHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/LayoutHome.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +103,8 @@
       <workItem from="1732326801170" duration="176000" />
       <workItem from="1732702796713" duration="268000" />
       <workItem from="1732709704194" duration="3614000" />
-      <workItem from="1732715981417" duration="1833000" />
+      <workItem from="1732715981417" duration="2494000" />
+      <workItem from="1732719852766" duration="584000" />
     </task>
     <servers />
   </component>

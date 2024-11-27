@@ -187,19 +187,18 @@ function LayoutHome() {
                         <Nav listNav={navigationHomeItems2} LinkComponent={Link} className=""
 
                              activeClass="active-class"/>
-                        <Button text="" className="setting-home"
-                                theme="setting"
-                                icon={<img src={shirt} alt={"shirt"} style={{width: "1.5rem", height: '1.5rem'}}/> }
-                                rounded="rounded-full"
-                                onClick={handleOpenSelectThemeModal}
-                        />
                         <Button theme={"reset"} text={"Thêm mới Playlist"}
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     handleOpenPlaylistModal();
                                 }}
                         ></Button>
-
+                        <Button text="" className="setting-home"
+                                theme="setting"
+                                icon={<img src={shirt} alt={"shirt"} style={{width: "1.5rem", height: '1.5rem'}}/> }
+                                rounded="rounded-full"
+                                onClick={handleOpenSelectThemeModal}
+                        />
                     </Sidebar>
                 </RenderIf>
                 <Group>
@@ -208,7 +207,6 @@ function LayoutHome() {
                         <Flex gap={3} justifyContent="between">
                             <Flex gap={3} className="flex-1" gd={{position: "relative"}}>
                             <RenderIf isTrue={[0, 1, 2].includes(breakpoints)}>
-                                    <Button text="" theme="reset" icon={<MdMenuOpen size={24} color="gray" />} onClick={() => setOpenModalMenuHome(true)} />
                                     <Button text="" theme="reset" icon={<MdMenuOpen size={24} color="gray" />} onClick={() => setOpenModalMenuHome(!openModalMenuHome)} />
                                 </RenderIf>
                                 <RenderIf isTrue={[3, 4, 5, 6].includes(breakpoints)}>
