@@ -1,3 +1,12 @@
+# Music-Streaming
+![image](https://github.com/user-attachments/assets/c3c90da5-62ed-4539-b0d9-6e40f41c160f)
+![image](https://github.com/user-attachments/assets/f93694a7-a2f8-4175-b95c-bb9bfb0d483a)
+![image](https://github.com/user-attachments/assets/4ae49119-7203-47df-b000-4fa382c1f607)
+![image](https://github.com/user-attachments/assets/af234e03-3cc7-4d92-bfe3-46ca0f67d51d)
+![image](https://github.com/user-attachments/assets/017a89fd-9443-4f1e-acde-712f69dcf56e)
+![image](https://github.com/user-attachments/assets/9e893aa8-9ec1-4c89-a8df-d4bc54d48870)
+![image](https://github.com/user-attachments/assets/7198bdfc-3f91-4ee8-ab14-0ff5c750f44e)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
