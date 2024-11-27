@@ -28,6 +28,8 @@ import {ModalSelectTheme} from "../components/Modal/ModalSelectTheme";
 import shirt from "../assets/icons/shirt.svg";
 import funny from "../assets/gif/looping-infinite-loop.gif";
 
+const BASE_URL = process.env.REACT_APP_API_URL;
+
 var stompClient = null;
 
 function LayoutHome() {
@@ -62,7 +64,7 @@ function LayoutHome() {
     const breakpoints = useResponsive([480, 640, 768, 1024, 1280, 1536])
 
     const connect = () => {
-        let Sock = new SockJS('http://localhost:8080/ws');
+        let Sock = new SockJS(`${BASE_URL}/ws`);
         stompClient = Stomp.over(Sock);
         stompClient.connect({}, onConnected, onError);
     }
