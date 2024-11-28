@@ -98,7 +98,7 @@ export const songsData = [
 ]
 
 export const navigationHomeItems1 = [
-    { id: 'library', label: 'Thư viện', link: '/mymusic', icon: <Library />, iconPosition: 'left' },
+    { id: 'library', label: 'Thư viện', link: '/library', icon: <Library />, iconPosition: 'left' },
     { id: 'home', label: 'Khám phá', link: '/', icon: <Discover />, iconPosition: 'left' },
     { id: 'zing-chart', label: '#M-Chart', link: '/m-chart', icon: <MChart />, iconPosition: 'left' },
 ];
@@ -108,7 +108,7 @@ export const navigationHomeItems2 = [
     { id: 'topic-type', label: 'Chủ đề & Thể loại', link: '/hub', icon: <TopicType />, iconPosition: 'left' },
     { id: 'top100', label: 'Top 100', link: '/top-100-songs', icon: <Top100 />, iconPosition: 'left' },
     { id: 'history', label: 'Nghe gần đây', link: '/history', icon: <History />, iconPosition: 'left' },
-    { id: 'love-song', label: 'Bài hát yêu thích', link: '/love-song', icon: <LoveSong />, iconPosition: 'left' },
+    { id: 'love-song', label: 'Bài hát yêu thích', link: '/favorites', icon: <LoveSong />, iconPosition: 'left' },
     { id: 'playlist', label: 'Playlist', link: '/playlist', icon: <Playlist />, iconPosition: 'left' },
     { id: 'album', label: 'Album', link: '/album', icon: <Album />, iconPosition: 'left' },
 ];

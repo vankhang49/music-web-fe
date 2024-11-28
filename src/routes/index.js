@@ -16,9 +16,9 @@ import {Album} from "../pages/Album/Album";
 import {LoginForm} from "../pages/Login/LoginForm";
 import {TopWeek} from "../pages/TopWeek/TopWeek";
 import {Artist} from "../pages/Artist/Artist";
-import {FavoriteList} from "../pages/Dashboard/Favorite/FavoriteList";
 import {Top100Songs} from "../pages/Top100/Top100Songs";
 import {NewRatings} from "../pages/NewRatings/NewRatings";
+import {FavoriteList} from "../pages/Favorite/FavoriteList";
 
 export const userRoutes = [
   {
@@ -27,7 +27,7 @@ export const userRoutes = [
     exact: true,
   },
   {
-    path: '/mymusic',
+    path: '/library',
     component: <Library />,
   },
   {
@@ -55,7 +55,7 @@ export const userRoutes = [
     component: <Artist/>,
   },
   {
-    path: '/love-song',
+    path: '/favorites',
     component: <FavoriteList />,
     private: true,
   },
