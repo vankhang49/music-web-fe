@@ -261,7 +261,12 @@ function LayoutHome() {
                          onClose={() => setOpenModalSearch(false) } position={positionInputSearch}/>
             <ModalUserAccess isOpen={openModalAvatar} onClose={() => setOpenModalAvatar(!openModalAvatar)} />
             <RenderIf isTrue={[0, 1, 2].includes(breakpoints)}>
-                <SidebarHomeMobile isOpen={openModalMenuHome} onClose={() => setOpenModalMenuHome(!openModalMenuHome)} />
+                <SidebarHomeMobile
+                    isOpen={openModalMenuHome}
+                    onClose={() => setOpenModalMenuHome(!openModalMenuHome)}
+                    openPlaylistModal={handleOpenPlaylistModal}
+                    openSelectThemeModal={handleOpenSelectThemeModal}
+                />
             </RenderIf>
 
             <NotificationBox openNotification={openNotification} callOpenNotification={handleCloseNotification} notifications={notifications}></NotificationBox>

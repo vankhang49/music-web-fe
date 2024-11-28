@@ -52,7 +52,7 @@ export const ModalSelectTheme = ({isOpen, onClose}) => {
         <Modal isOpen={isOpen} onClose={onClose}
                displayCoat={false}
                idControl="modal_select_theme"
-               position="relative" gd={{width: "50%", height: 'auto', top: '9%', right: '1%', borderRadius: '10px'}}
+               position="relative" gd={{height: 'auto', top: '9%', right: '1%', borderRadius: '10px'}}
                className={`modal-select-theme ${themeSelected}`}
         >
             <Typography tag={'h1'} center >Chủ đề</Typography>
@@ -78,7 +78,7 @@ export const ModalSelectTheme = ({isOpen, onClose}) => {
                     ></div>
                 ))}
             </Grid>
-            <Flex justifyContent={"center"} alignItems={"center"}>
+            <Flex justifyContent={"center"} alignItems={"center"} className={'modal-footer'}>
                 <Button text={"Áp dụng"} className={'select-button'} onClick={handleApply}></Button>
             </Flex>
         </Modal>

@@ -304,22 +304,6 @@ export function CommentBox({openComment, callOpenComment}) {
         return '';
     }
 
-    const showSuccess = () => {
-        showToast("success!", 'success', 5000);
-    }
-    const showWarning = () => {
-        showToast("success!", 'warning', 5000);
-    }
-    const showError = () => {
-        showToast("success!", 'error', 5000);
-    }
-    const showInfo = () => {
-        showToast("success!", 'info', 5000);
-    }
-    const showDefault = () => {
-        showToast("success!", 5000);
-    }
-
     return (
         <Container withShadow={false} className={isOpenComment ? 'comment active-comment' : 'comment'}>
             <Flex justifyContent={'between'} alignItems={'center'} className={'comment-header'}
@@ -337,11 +321,6 @@ export function CommentBox({openComment, callOpenComment}) {
                         }}
                         onClick={handleCloseComment}
                 />
-                <Button theme={'reset'} text={'S'} onClick={showSuccess}></Button>
-                <Button theme={'reset'} text={'W'} onClick={showWarning}></Button>
-                <Button theme={'reset'} text={'E'} onClick={showError}></Button>
-                <Button theme={'reset'} text={'I'} onClick={showInfo}></Button>
-                <Button theme={'reset'} text={'D'} onClick={showDefault}></Button>
                 <Typography tag={'h3'}>{totalElements} BÌNH LUẬN</Typography>
             </Flex>
             <Group className={'comment-content'}

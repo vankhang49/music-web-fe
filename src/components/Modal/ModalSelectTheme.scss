@@ -14,6 +14,7 @@
   --button-theme-2: rgb(39 39 42);
   --button-theme-3: rgb(99 102 241);
   --button-theme-4: rgb(244 63 94);
+  width: 50%;
 
   .theme-img, .theme-bg {
     width: 100%;
@@ -42,6 +43,12 @@
 
   .theme-bg {
     border: 1px solid #ccc;
+  }
+
+  .modal-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
   }
 
 
@@ -99,5 +106,11 @@
       background-color: var(--button-theme-4);
       color: var(--color-theme-1);
     }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .modal-select-theme {
+    width: 100%;
   }
 }
