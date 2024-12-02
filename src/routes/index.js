@@ -19,6 +19,7 @@ import {Artist} from "../pages/Artist/Artist";
 import {Top100Songs} from "../pages/Top100/Top100Songs";
 import {NewRatings} from "../pages/NewRatings/NewRatings";
 import {FavoriteList} from "../pages/Favorite/FavoriteList";
+import NewRelease from "../pages/NewRelease/NewRelease";
 
 export const userRoutes = [
   {
@@ -59,10 +60,10 @@ export const userRoutes = [
     component: <FavoriteList />,
     private: true,
   },
-  // {
-  //   path: '/login',
-  //   component: <LoginForm />,
-  // },
+  {
+    path: '/new-release/:option',
+    component: <NewRelease />,
+  },
   {
     path: '*',
     component: <NotFound />,

@@ -19,6 +19,8 @@ import ModalSongMenu from "../../components/Modal/ModalSongMenu";
 import {songsData} from "../../data";
 import {songSuggestions} from "../../data/songSuggestions";
 import {albumsWantToListen} from "../../data/albumsWantToListen";
+import AlbumCard from "../../components/AlbumAndPlayListCard/AlbumCard";
+import SongCard from "../../components/SongCard/SongCard";
 
 function HomePage() {
 
@@ -182,193 +184,59 @@ function HomePage() {
             <Container withShadow={false}>
                 <Flex alignItems="center" justifyContent="between">
                     <Typography tag="h2">Gợi Ý Dành Cho Bạn</Typography>
-                    <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
-                            gap={1}/>
+                    <Link to={"/new-release/songs"} gd={{color: "var(--color-text)"}}>
+                        <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
+                                gap={1} gd={{color: "var(--color-text)"}}/>
+                    </Link>
                 </Flex>
                 {/*Test Song*/}
                 <Grid columns={1} md={2} xl={3} gap={6}>
                     {suggestedSongs && suggestedSongs.map((song, index) => (
-                        <Flex className={playSongList[songIndexList]?.songId === song.songId && isPlayingSong
-                            ? "audio-card active" : "audio-card"}>
-                            <Card sizeImg={60}
-                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active" : "song-card"}
-                                  key={index} long
-                                  srcImg={song.coverImageUrl}
-                                  title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
-                                  description={song.artists.map((artist, index) => (
-                                      <Typography tag={'span'}>
-                                          {artist.artistName}
-                                          {index !== song.artists.length - 1 &&
-                                              <Typography tag={'span'}>, </Typography>}
-                                      </Typography>
-                                  ))}
-                                  children={
-                                      <Flex justifyContent={'end'} alignItems={'center'}>
-                                          <Button className={'card-icon kara'} theme={'reset'}
-                                                  icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
-                                          <Button className={'card-icon heart'} theme={'reset'}
-                                                  icon={<IoIosHeart size={18}/>}></Button>
-                                          <Button className={'card-icon menu'} theme={'reset'}
-                                                  id={`active-song-menu-${song.songId}`}
-                                                  onClick={(e) => {
-                                                      e.stopPropagation();
-                                                      openSongMenu(song.songId)
-                                                  }}
-                                                  icon={<HiOutlineDotsHorizontal size={18}/>}></Button>
-                                          <Typography className={'duration'} right
-                                                      tag="small">{((song.duration) / 60).toFixed(2).replace('.', ':')}</Typography>
-                                          {song.songId === modalSongIndex &&
-                                              <ModalSongMenu
-                                                  isOpen={isOpenSongMenu}
-                                                  onClose={handleCloseSongMenu}
-                                                  song={song}
-                                              ></ModalSongMenu>
-                                          }
-                                      </Flex>
-                                  }
-                                  gd={{maxWidth: '100%'}}
-                                  onClick={() => handlePlaySong(index)}
-                            >
-                            </Card>
-                            <Flex justifyContent={"center"} alignItems={'center'}
-                                  className={'audio-play'}
-                                  gd={{width: 60, height: 60, margin: 10}}
-                            >
-                                {
-                                    playSongList[songIndexList]?.songId === song.songId ?
-                                        <Button theme={'reset'}
-                                                onClick={handlePlayAndPauseSong}
-                                                icon={
-                                                    isPlayingSong ? <img src={wave} height={20} alt="wave"/>
-                                                        : <FaPlay size={20} style={{paddingLeft: 5}} color={"white"}/>
-                                                }
-                                                gd={{border: 'none'}}
-                                        >
-                                        </Button>
-                                        :
-                                        <Button theme={'reset'}
-                                                onClick={() => handlePlaySong(index)}
-                                                icon={<FaPlay size={20} style={{paddingLeft: 5}} color={"white"}/>}
-                                                gd={{border: 'none'}}
-                                        >
-                                        </Button>
-                                }
-                            </Flex>
-                        </Flex>
+                        <SongCard songList={suggestedSongs} song={song} index={index}/>
                     ))}
                 </Grid>
             </Container>
             <Container withShadow={false}>
                 <Flex alignItems="center" justifyContent="between">
                     <Typography tag="h2">Có thể bạn muốn nghe</Typography>
-                    <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
-                            gap={1}/>
+                    <Link to={"/new-release/albums"} gd={{color: "var(--color-text)"}}>
+                        <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
+                                gap={1} gd={{color: "var(--color-text)"}}/>
+                    </Link>
                 </Flex>
 
                 {/*Test Album*/}
                 <Grid columns={2} sm={2} md={3} xl={6} gap={6}>
                     {albums && albums.map((album, index) => (
-                        <Card srcImg={album.coverImageUrl}
-                              title={album.title.length > 17 ? `${album.title.substring(0, 15)}...` : album.title}
-                              urlLink={`/albums/${album.albumId}`}
-                              LinkComponent={Link} description={album.provide}
-                        >
-                        </Card>
+                        <AlbumCard album={album} key={index}/>
                     ))}
                 </Grid>
             </Container>
             <Container withShadow={false}>
                 <Flex alignItems="center" justifyContent="between">
                     <Typography tag="h2">Mới phát hành</Typography>
-                    <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
-                            gap={1}/>
+                    <Link to={"/new-release/songs"} gd={{color: "var(--color-text)"}}>
+                        <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
+                                gap={1} gd={{color: "var(--color-text)"}}/>
+                    </Link>
                 </Flex>
                 <Grid columns={1} sm={2} xl={3} gap={6}>
                     {suggestedSongs && suggestedSongs.map((song, index) => (
-                        <Flex className={playSongList[songIndexList]?.songId === song.songId && isPlayingSong
-                            ? "audio-card active" : "audio-card"}>
-                            <Card sizeImg={60}
-                                  className={playSongList[songIndexList]?.songId === song.songId ? "song-card active" : "song-card"}
-                                  key={index} long
-                                  srcImg={song.coverImageUrl}
-                                  title={song.title.length > 17 ? `${song.title.substring(0, 15)}...` : song.title}
-                                  description={song.artists.map((artist, index) => (
-                                      <Typography tag={'span'}>
-                                          {artist.artistName}
-                                          {index !== song.artists.length - 1 &&
-                                              <Typography tag={'span'}>, </Typography>}
-                                      </Typography>
-                                  ))}
-                                  children={
-                                      <Flex justifyContent={'end'} alignItems={'center'}>
-                                          <Button className={'card-icon kara'} theme={'reset'}
-                                                  icon={<LiaMicrophoneAltSolid size={18}/>}></Button>
-                                          <Button className={'card-icon heart'} theme={'reset'}
-                                                  icon={<IoIosHeart size={18}/>}></Button>
-                                          <Button className={'card-icon menu'} theme={'reset'}
-                                                  id={`active-song-menu-${song.songId}`}
-                                                  onClick={(e) => {
-                                                      e.stopPropagation();
-                                                      openSongMenu(song.songId)
-                                                  }}
-                                                  icon={<HiOutlineDotsHorizontal size={18}/>}></Button>
-                                          <Typography className={'duration'} right
-                                                      tag="small">{((song.duration) / 60).toFixed(2).replace('.', ':')}</Typography>
-                                          {song.songId === modalSongIndex &&
-                                              <ModalSongMenu
-                                                  isOpen={isOpenSongMenu}
-                                                  onClose={handleCloseSongMenu}
-                                                  song={song}
-                                              ></ModalSongMenu>
-                                          }
-                                      </Flex>
-                                  }
-                                  gd={{maxWidth: '100%'}}
-                                  onClick={() => handlePlaySong(index)}
-                            >
-                            </Card>
-                            <Flex justifyContent={"center"} alignItems={'center'}
-                                  className={'audio-play'}
-                                  gd={{width: 60, height: 60, margin: 10}}
-                            >
-                                {
-                                    playSongList[songIndexList]?.songId === song.songId ?
-                                        <Button theme={'reset'}
-                                                onClick={handlePlayAndPauseSong}
-                                                icon={
-                                                    isPlayingSong ? <img src={wave} height={20} alt="wave"/>
-                                                        : <FaPlay size={20} style={{paddingLeft: 5}} color={"white"}/>
-                                                }
-                                                gd={{border: 'none'}}
-                                        >
-                                        </Button>
-                                        :
-                                        <Button theme={'reset'}
-                                                onClick={() => handlePlaySong(index)}
-                                                icon={<FaPlay size={20} style={{paddingLeft: 5}} color={"white"}/>}
-                                                gd={{border: 'none'}}
-                                        >
-                                        </Button>
-                                }
-                            </Flex>
-                        </Flex>
+                        <SongCard songList={suggestedSongs} song={song} index={index}/>
                     ))}
                 </Grid>
             </Container>
             <Container withShadow={false}>
                 <Flex alignItems="center" justifyContent="between">
                     <Typography tag="h2">Nhạc Hot Gây Bão</Typography>
-                    <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
-                            gap={1}/>
+                    <Link to={"/new-release/albums"} gd={{color: "var(--color-text)"}}>
+                        <Button text="Tất cả" theme="transparent" size={1} icon={<MdArrowForwardIos/>} iconPosition="right"
+                                gap={1} gd={{color: "var(--color-text)"}}/>
+                    </Link>
                 </Flex>
                 <Grid columns={2} sm={2} md={3} xl={6} gap={6}>
                     {albums && albums.map((album, index) => (
-                        <Card srcImg={album.coverImageUrl}
-                              title={album.title.length > 17 ? `${album.title.substring(0, 15)}...` : album.title}
-                              urlLink={`/albums/${album.albumId}`}
-                              LinkComponent={Link} description={album.provide}
-                        >
-                        </Card>
+                        <AlbumCard album={album} key={index}/>
                     ))}
                 </Grid>
             </Container>

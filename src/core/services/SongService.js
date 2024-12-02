@@ -92,6 +92,17 @@ export async function getNew100Songs() {
     }
 }
 
+export async function getNewSongsRelease(national) {
+    try {
+        const temp
+            = await axios.get(`${BASE_URL}/api/public/songs/new-songs-release?national=${national}`);
+        console.log(temp.data);
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
 export async function getTop100Songs() {
     try {
         const temp

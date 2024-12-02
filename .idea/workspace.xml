@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b7af0de-8e9f-4293-bdb7-f20de04c0b71" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/SongCard/SongCard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SongCard/SongCard.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Favorite/FavoriteList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Favorite/TimeExtractor.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/vinylDisc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/NewRelease/NewRealease.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/NewRelease/NewRelease.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Favorite/FavoriteList.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/Favorite/TimeExtractor.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/AlbumService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/AlbumService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/services/SongService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/services/SongService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home/HomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/HomePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +42,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/my_project/music-web-fe/src/routes",
+    "last_opened_file_path": "D:/my_project/music-web-fe/src/assets/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,11 +55,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\my_project\music-web-fe\src\routes" />
+      <recent name="D:\my_project\music-web-fe\src\assets\images" />
       <recent name="D:\my_project\music-web-fe\src\pages" />
+      <recent name="D:\my_project\music-web-fe\src\routes" />
       <recent name="D:\my_project\music-web-fe\src\components" />
       <recent name="D:\my_project\music-web-fe\src\core" />
-      <recent name="D:\my_project\music-web-fe\src\layouts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\my_project\music-web-fe\src\assets\images\son-tung-mtp" />
@@ -112,6 +111,9 @@
       <workItem from="1732719852766" duration="649000" />
       <workItem from="1732779381163" duration="1343000" />
       <workItem from="1732788014638" duration="621000" />
+      <workItem from="1732790899683" duration="19000" />
+      <workItem from="1732864559906" duration="77000" />
+      <workItem from="1733112578622" duration="1013000" />
     </task>
     <servers />
   </component>

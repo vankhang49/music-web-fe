@@ -1,0 +1,100 @@
+.new-release {
+
+  .title-m-chart {
+    padding: 40px 0;
+  }
+  .choice {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid #ccc;
+
+    a {
+      width: 100px;
+      height: 40px;
+      border-radius: 0;
+      color: var(--color-text);
+      font-weight: 550;
+      text-align: center;
+    }
+    a.active {
+      color: var(--bg-button) !important;
+      border-bottom: 2px solid var(--bg-button);
+    }
+  }
+
+  .national {
+    p {
+      width: 100px;
+      height: 30px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    p.national-active {
+      border: 1px solid var(--bg-button);
+      background-color: var(--bg-button);
+    }
+  }
+
+  .custom-table {
+    table {
+      td {
+        .album-img {
+          position: relative;
+          .block {
+            position: relative;
+            padding: 0 10px;
+            img {
+              position: absolute;
+              z-index: 1;
+            }
+
+            &::before {
+              content: "";
+              width: 100%;
+              height: 100%;
+              left: 25%;
+              position: absolute;
+              background: url("../../assets/images/vinylDisc.png") center center no-repeat;
+              background-size: contain;
+              z-index: 0;
+            }
+          }
+        }
+
+        &:hover {
+          .album-img {
+            position: relative;
+            .block {
+              position: relative;
+              img {
+                position: absolute;
+                transform: translateX(-10%);
+                transition: transform 0.5s ease-in-out;
+                z-index: 1;
+              }
+
+              &::before {
+                animation: spin 8s linear infinite;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -39,6 +39,18 @@ export const getAllSuggestedAlbums = async () => {
     }
 }
 
+export const getAllNewAlbumsRelease = async (national) => {
+    try {
+        const temp
+            = await axios.get(`${BASE_URL}/api/public/albums/new-albums-release?national=${national}`);
+        console.log(temp.data)
+        return temp.data;
+    } catch (e) {
+        console.log(e)
+        return [];
+    }
+}
+
 export const getAllFavoriteAlbums = async (sort, direction,page,size) => {
     try {
         if (direction === undefined) {
